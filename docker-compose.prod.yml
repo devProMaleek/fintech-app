@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  springweb:
+    image: docker-nextjs-dev
+    container_name: springweb
+    build:
+      context: .
+      target: development
+      dockerfile: Dockerfile.prod
+    volumes:
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+      - .:/usr/src/app
+    networks:
+      - frontend
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
+
+networks: 
+  backend:
+    name: backend
+  frontend:
+    name: frontend
