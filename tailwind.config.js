@@ -15,6 +15,7 @@ module.exports = {
     },
     colors: {
       transparent: 'transparent',
+      primaryDarkPurple: '#7610B5',
       primaryPurple: '#E7E9FF',
       primaryTextColor: '#0A2440',
       primaryBlue: '#152CD1',
@@ -29,7 +30,7 @@ module.exports = {
   plugins: [require('flowbite/plugin')],
   safelist: [
     {
-      pattern: /(bg|text|border)-primary(Purple|Blue|TextColor|Yellow)/,
+      pattern: /(bg|text|border)-primary(Purple|DarkPurple|Blue|TextColor|Yellow)/,
     },
   ],
 };

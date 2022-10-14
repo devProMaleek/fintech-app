@@ -2,15 +2,16 @@ import React from 'react';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 
+import Logo from '../../public/assets/svgs/Spring-Logo.svg';
+
 const Navbar = (props) => {
   return (
     <>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
         <div className="container flex justify-between items-center mx-auto">
           <div className="flex-none pr-8">
-            <a href="https://flowbite.com/" className="flex items-center w-auto">
-              <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
-              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+            <a href="/" className="flex items-center w-auto">
+              <Image src={Logo} width="100px" height="60px" className="mr-3 h-6 sm:h-9" alt="Spring Logo" />
             </a>
           </div>
           <div className="flex-none md:order-2">
@@ -33,12 +34,10 @@ const Navbar = (props) => {
                       type="button"
                     >
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="mr-2 w-8 h-8 rounded-full"
-                        src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-                        alt="user photo"
-                      />
-                      Bonnie Green
+                      <div className="bg-primaryBlue flex items-center mr-1 justify-center w-8 h-8 rounded-full">
+                        <p className="text-white text-xs">MA</p>
+                      </div>
+                      Micheal Akintoye
                       <svg
                         className="w-4 h-4 mx-1.5"
                         aria-hidden="true"
@@ -70,24 +69,33 @@ const Navbar = (props) => {
                     >
                       <div className="py-3 px-4 text-sm text-gray-900 dark:text-white">
                         <div className="font-medium ">Pro User</div>
-                        <div className="truncate">name@flowbite.com</div>
+                        <div className="truncate">michealakintoye@spring.com</div>
                       </div>
                       <ul
                         className="py-1 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton"
                       >
                         <li>
-                          <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                          <a
+                            href="#"
+                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
                             Dashboard
                           </a>
                         </li>
                         <li>
-                          <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                          <a
+                            href="#"
+                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
                             Settings
                           </a>
                         </li>
                         <li>
-                          <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                          <a
+                            href="#"
+                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >
                             Earnings
                           </a>
                         </li>
@@ -181,7 +189,6 @@ const Navbar = (props) => {
                     Referrals
                   </a>
                 </li>
-                
               </ul>
             </div>
           </div>
