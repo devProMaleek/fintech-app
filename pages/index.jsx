@@ -1,7 +1,10 @@
 import Head from 'next/head';
 import Script from 'next/script';
-import Navbar from '../components/Navbar';
-import Header from '../components/Header';
+import Navbar from '../components/Dashboard/Navbar';
+import Header from '../components/Dashboard/Header';
+import TransactionInsight from '../components/Dashboard/TransactionInsight';
+import InvestmentPackages from '../components/Dashboard/InvestmentPackages';
+import Referral from '../components/Dashboard/Referral';
 
 export default function Home() {
   return (
@@ -15,6 +18,9 @@ export default function Home() {
       <main>
         <Navbar />
         <Header />
+        <TransactionInsight/>
+        <InvestmentPackages />
+        <Referral />
       </main>
 
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js" />
