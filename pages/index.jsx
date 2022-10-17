@@ -5,8 +5,10 @@ import Header from '../components/Dashboard/Header';
 import TransactionInsight from '../components/Dashboard/TransactionInsight';
 import InvestmentPackages from '../components/Dashboard/InvestmentPackages';
 import Referral from '../components/Dashboard/Referral';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -16,7 +18,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Navbar />
+        <Navbar router={router} />
         <Header />
         <TransactionInsight/>
         <InvestmentPackages />
