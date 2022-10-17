@@ -4,34 +4,20 @@ import MyInvestments from './MyInvestments';
 import ExplorePackages from './ExplorePackages';
 
 const InvestmentContent = (props) => {
+  console.log(props.clicked);
   return (
     <>
       <section className="bg-primaryPurple pt-6 rounded-t-lg dark:bg-gray-900">
         <div className="bg-white rounded-t-xl">
           <div className=" py-4 px-4 mx-auto rounded-lg max-w-screen-xl sm:py-16 lg:px-6">
-            <div id="investmentTabContent">
-              <div
-                className="hidden p-4 bg-white rounded-lg dark:bg-gray-800"
-                id="explorePackages"
-                role="tabpanel"
-                aria-labelledby="explorePackages-tab"
-              >
-                <ExplorePackages/>
-              </div>
-              <div
-                className="hidden p-4 bg-white rounded-lg dark:bg-gray-800"
-                id="myInvestments"
-                role="tabpanel"
-                aria-labelledby="myInvestments-tab"
-              >
-                <MyInvestments />
+            <div>
+              <div className="p-4 rounded-lg dark:bg-gray-800">
+                {props.clicked ? <MyInvestments/> : <ExplorePackages />}
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      <section></section>
     </>
   );
 };
