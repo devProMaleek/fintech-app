@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 import Logo from '../../public/assets/svgs/Spring-Logo.svg';
@@ -76,10 +77,7 @@ const Navbar = (props) => {
                         aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton"
                       >
                         <li>
-                          <a
-                            href="#"
-                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
+                          <a className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                             Dashboard
                           </a>
                         </li>
@@ -141,53 +139,49 @@ const Navbar = (props) => {
             <div className="hidden justify-between items-center w-full md:flex md:w-auto" id="mobile-menu-2">
               <ul className="flex flex-col p-4 mt-4 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-2 text-white border-b-2 border-blue-700 hover:border-gray-300 bg-blue-700  md:bg-transparent md:text-blue-700  dark:text-white"
-                    aria-current="page"
-                  >
-                    Dashboard
-                  </a>
+                  <Link href="/">
+                    <a
+                      className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname === `/` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
+                      aria-current="page"
+                    >
+                      Dashboard
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-2 text-gray-700 border-b-2 border-transparent hover:border-blue-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Invest
-                  </a>
+                  <Link href="/investment">
+                    <a className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname === `/investment` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}>
+                      Invest
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-2 text-gray-700 border-b-2 border-transparent hover:border-blue-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Transfer
-                  </a>
+                  <Link href="/">
+                    <a className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname === `/transfer` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}>
+                      Transfer
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-2 text-gray-700 border-b-2 border-transparent hover:border-blue-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Pay Bills
-                  </a>
+                  <Link href="/">
+                    <a className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname === `/bills` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}>
+                      Pay Bills
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-2 text-gray-700 border-b-2 border-transparent hover:border-blue-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Transactions
-                  </a>
+                  <Link href="/">
+                    <a className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname === `/transactions` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}>
+                      Transactions
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 px-2 text-gray-700 border-b-2 border-transparent hover:border-blue-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Referrals
-                  </a>
+                  <Link href="/">
+                    <a className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname == `/referrals` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}>
+                      Referrals
+                    </a>
+                  </Link>
                 </li>
               </ul>
             </div>
