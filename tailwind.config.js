@@ -19,8 +19,11 @@ module.exports = {
       primaryPurple: '#E7E9FF',
       primaryYellow: '#FDC37A',
       primaryGreen: '#1E9940',
+      primaryTextPlaceholder: '#9B9B9B',
+      primaryGrayText: '#8F8F8F',
       primaryDarkGreen: '#058C1A',
       primaryLightGreen: '#DFFFD6',
+      primaryLightGrey: '#E9EBED',
       primaryDarkPurple: '#7610B5',
       primaryTextColor: '#0A2440',
       primaryLightYellow: '#FFECD3',
@@ -30,15 +33,19 @@ module.exports = {
         900: '#1a202c',
       },
     },
+    clipPath: {
+      mypolygon: 'polygon(, 1% 0%1% 0%, 1% 100%, 1% 100%, 99% 100%, 99% 100%, 100% 1%, 100% 1%, 38% 0, 44% 8%, 62% 1%, 56% 8%, );',
+    },
     fontFamily: {
       nunito: ['nunito', 'sans'],
     },
     extend: {},
   },
-  plugins: [require('flowbite/plugin')],
+  plugins: [require('flowbite/plugin'), require('tailwind-clip-path')],
   safelist: [
     {
-      pattern: /(bg|text|border)-primary(Purple|DarkPurple|Blue|TextColor|Yellow|LightYellow|HighlightYellow|Green|DarkGreen|LightGreen|)/,
+      pattern:
+        /(bg|text|border)-primary(Purple|DarkPurple|Blue|TextColor|Yellow|LightYellow|HighlightYellow|Green|DarkGreen|LightGreen|TextPlaceholder|GrayText|LightGrey|)/,
     },
   ],
 };

@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Dropdown } from 'flowbite-react';
 import PropTypes from 'prop-types';
 
 import Logo from '../../public/assets/svgs/Spring-Logo.svg';
 
 const Navbar = (props) => {
+  const [isDropDown, setIsDropDown] = useState(false);
+
+  const handleDropDown = () => {
+    setIsDropDown(!isDropDown);
+  };
+
+  const currentPath = props.router.pathname;
+  const allInvestPath = [
+    `/investment`,
+    `/investment/create/package`,
+    `/investment/create/transactionpin`,
+    `/investment/create/success`,
+  ];
   return (
     <>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -27,87 +41,42 @@ const Navbar = (props) => {
                       <path d="M256 32V49.88C328.5 61.39 384 124.2 384 200V233.4C384 278.8 399.5 322.9 427.8 358.4L442.7 377C448.5 384.2 449.6 394.1 445.6 402.4C441.6 410.7 433.2 416 424 416H24C14.77 416 6.365 410.7 2.369 402.4C-1.628 394.1-.504 384.2 5.26 377L20.17 358.4C48.54 322.9 64 278.8 64 233.4V200C64 124.2 119.5 61.39 192 49.88V32C192 14.33 206.3 0 224 0C241.7 0 256 14.33 256 32V32zM216 96C158.6 96 112 142.6 112 200V233.4C112 281.3 98.12 328 72.31 368H375.7C349.9 328 336 281.3 336 233.4V200C336 142.6 289.4 96 232 96H216zM288 448C288 464.1 281.3 481.3 269.3 493.3C257.3 505.3 240.1 512 224 512C207 512 190.7 505.3 178.7 493.3C166.7 481.3 160 464.1 160 448H288z" />
                     </svg>
                   </div>
-                  <div>
-                    <button
-                      id="dropdownAvatarNameButton"
-                      data-dropdown-toggle="dropdownAvatarName"
-                      className="flex items-center text-sm font-medium text-gray-900 border-2 rounded-md p-1 hover:text-blue-600 dark:hover:text-blue-500 md:mr-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
-                      type="button"
-                    >
-                      <span className="sr-only">Open user menu</span>
-                      <div className="bg-primaryBlue flex items-center mr-1 justify-center w-8 h-8 rounded-full">
-                        <p className="text-white text-xs">MA</p>
-                      </div>
-                      Micheal Akintoye
-                      <svg
-                        className="w-4 h-4 mx-1.5"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        ></path>
-                      </svg>
-                    </button>
-
-                    <div
-                      id="dropdownAvatarName"
-                      className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                      data-popper-reference-hidden=""
-                      data-popper-escaped=""
-                      data-popper-placement="bottom"
-                      style={{
-                        position: 'absolute',
-                        inset: '0px auto auto 0px',
-                        margin: '0px',
-                        transform: 'translateX(0px)',
-                        transform: 'translateY(18681px)',
-                      }}
-                    >
-                      <div className="py-3 px-4 text-sm text-gray-900 dark:text-white">
-                        <div className="font-medium ">Pro User</div>
-                        <div className="truncate">michealakintoye@spring.com</div>
-                      </div>
-                      <ul
-                        className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton"
-                      >
-                        <li>
-                          <a className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                            Dashboard
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Settings
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Earnings
-                          </a>
-                        </li>
-                      </ul>
-                      <div className="py-1">
-                        <a
-                          href="#"
-                          className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  <Dropdown
+                    label={
+                      <div className="flex items-center text-sm font-medium text-gray-900 border-2 rounded-md p-1 hover:text-blue-600 dark:hover:text-blue-500 md:mr-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white">
+                        <span className="sr-only">Open user menu</span>
+                        <div className="bg-primaryBlue flex items-center mr-1 justify-center w-8 h-8 rounded-full">
+                          <p className="text-white text-xs">MA</p>
+                        </div>
+                        Micheal Akintoye
+                        <svg
+                          className="w-4 h-4 mx-1.5"
+                          aria-hidden="true"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          Sign out
-                        </a>
+                          <path
+                            fillRule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
                       </div>
-                    </div>
-                  </div>
+                    }
+                    arrowIcon={false}
+                    inline={true}
+                  >
+                    <Dropdown.Header>
+                      <span className="block text-sm">Micheal Akintoye</span>
+                      <span className="block truncate text-sm font-medium">name@spring.com</span>
+                    </Dropdown.Header>
+                    <Dropdown.Item>Dashboard</Dropdown.Item>
+                    <Dropdown.Item>Settings</Dropdown.Item>
+                    <Dropdown.Item>Earnings</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item>Sign out</Dropdown.Item>
+                  </Dropdown>
                 </div>
 
                 <button
@@ -141,7 +110,9 @@ const Navbar = (props) => {
                 <li>
                   <Link href="/">
                     <a
-                      className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname === `/` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
+                      className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
+                        currentPath === `/` ? `border-blue-700 text-blue-700` : `border-transparent`
+                      } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
                       aria-current="page"
                     >
                       Dashboard
@@ -150,35 +121,55 @@ const Navbar = (props) => {
                 </li>
                 <li>
                   <Link href="/investment">
-                    <a className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname === `/investment` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}>
+                    <a
+                      className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
+                        allInvestPath.includes(currentPath) ? `border-blue-700 text-blue-700` : `border-transparent`
+                      } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
+                    >
                       Invest
                     </a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/">
-                    <a className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname === `/transfer` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}>
+                    <a
+                      className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
+                        currentPath === `/transfer` ? `border-blue-700 text-blue-700` : `border-transparent`
+                      } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
+                    >
                       Transfer
                     </a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/">
-                    <a className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname === `/bills` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}>
+                    <a
+                      className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
+                        currentPath === `/bills` ? `border-blue-700 text-blue-700` : `border-transparent`
+                      } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
+                    >
                       Pay Bills
                     </a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/">
-                    <a className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname === `/transactions` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}>
+                    <a
+                      className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
+                        currentPath === `/transactions` ? `border-blue-700 text-blue-700` : `border-transparent`
+                      } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
+                    >
                       Transactions
                     </a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/">
-                    <a className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${props.router.pathname == `/referrals` ? `border-blue-700 text-blue-700` : `border-transparent`} hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}>
+                    <a
+                      className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
+                        currentPath == `/referrals` ? `border-blue-700 text-blue-700` : `border-transparent`
+                      } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
+                    >
                       Referrals
                     </a>
                   </Link>
