@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Dropdown } from 'flowbite-react';
@@ -7,11 +7,6 @@ import PropTypes from 'prop-types';
 import Logo from '../../public/assets/svgs/Spring-Logo.svg';
 
 const Navbar = (props) => {
-  const [isDropDown, setIsDropDown] = useState(false);
-
-  const handleDropDown = () => {
-    setIsDropDown(!isDropDown);
-  };
 
   const currentPath = props.router.pathname;
   const allInvestPath = [
@@ -108,10 +103,10 @@ const Navbar = (props) => {
             <div className="hidden justify-between items-center w-full md:flex md:w-auto" id="mobile-menu-2">
               <ul className="flex flex-col p-4 mt-4 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
-                  <Link href="/">
+                  <Link href="/dashboard">
                     <a
                       className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
-                        currentPath === `/` ? `border-blue-700 text-blue-700` : `border-transparent`
+                        currentPath === `/dashboard` ? `border-blue-700 text-blue-700` : `border-transparent`
                       } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
                       aria-current="page"
                     >

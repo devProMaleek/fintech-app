@@ -16,8 +16,8 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       primaryBlue: '#152CD1',
-      primaryPurple: '#E7E9FF',
       primaryYellow: '#FDC37A',
+      primaryPurple: '#E7E9FF',
       primaryGreen: '#1E9940',
       primaryTextPlaceholder: '#9B9B9B',
       primaryGrayText: '#8F8F8F',
