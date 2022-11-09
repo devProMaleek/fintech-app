@@ -146,7 +146,7 @@ const VerifyNumber = (props) => {
                 <div className="w-96 h-0.5 bg-gray-200 mx-auto my-6"></div>
                 <Link href="#">
                   <a href="http://" className="text-primaryBlue text-base font-normal">
-                    Didn't receive a code?
+                    Didn&apos;t receive a code?
                   </a>
                 </Link>
               </div>

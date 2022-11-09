@@ -38,19 +38,19 @@ const Header = (props) => {
         <div className="p-8 max-w-xl bg-blue-800 rounded-lg shadow-xl dark:bg-gray-800 dark:border-gray-700">
           <div className="grid grid-cols-4 gap-4 justify-items-center ">
             <div className="text-center pl-0 pr-6 border-r border-gray-500">
-              <Image width="38px" height="34px" src={invest} className="text-center"  />
+              <Image alt="" width="38px" height="34px" src={invest} className="text-center"  />
               <p className='text-center text-xl text-bold text-white pt-2'>Invest</p>
             </div>
             <div className="text-center p-x-6 border-r border-gray-500">
-              <Image width="38px" height="34px" src={transfer} className="text-center" />
+              <Image alt="" width="38px" height="34px" src={transfer} className="text-center" />
               <p className='text-center text-xl text-bold text-white pt-2'>Transfer</p>
             </div>
             <div className="text-center p-x-6 border-r border-gray-500">
-              <Image width="38px" height="34px" src={bills} className="text-center"  />
+              <Image alt="" width="38px" height="34px" src={bills} className="text-center"  />
               <p className='text-center text-xl text-bold text-white pt-2'>Pay Bills</p>
             </div>
             <div className="text-center p-x-6">
-              <Image width="38px" height="34px" src={referrals} className="text-center"  />
+              <Image alt="" width="38px" height="34px" src={referrals} className="text-center"  />
               <p className='text-center text-xl text-bold text-white pt-2'>Referral</p>
             </div>
           </div>
