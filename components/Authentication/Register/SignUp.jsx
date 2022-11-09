@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
-import Logo from '../../public/assets/svgs/Spring-Logo.svg';
+import Logo from '../../../public/assets/svgs/Spring-Logo.svg';
 
 const SignUp = (props) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,9 +15,9 @@ const SignUp = (props) => {
   };
   return (
     <>
-      <section className="bg-white dark:bg-gray-900">
-        <div className="flex w-full">
-          <div className="w-1/2 h-screen">
+      <section className="bg-white max-h-screen dark:bg-gray-900">
+        <div className="flex w-full max-h-full">
+          <div className="w-1/2 ">
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
               <div className="container flex justify-between items-center mx-auto">
                 <div className="flex-none pr-8">
@@ -28,7 +28,7 @@ const SignUp = (props) => {
               </div>
             </nav>
 
-            <div className="py-8 px-4 ml-6 h-full flex flex-col justify-center items-start sm:py-16 lg:px-6">
+            <div className="py-8 px-4 ml-6 flex flex-col justify-center items-start sm:py-16 lg:px-6">
               <form className="max-w-lg col-span-2" onSubmit={submitHandler}>
                 <h2 className="pb-4 font-medium font-nunito text-primaryTextColor text-lg">Register</h2>
                 <div className="border p-8 rounded-lg">
@@ -79,24 +79,24 @@ const SignUp = (props) => {
                       required=""
                     />
                   </div>
-                  <label htmlFor="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                  <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                     Password
                   </label>
-                  <div class="relative mb-6">
+                  <div className="relative mb-6">
                     <input
                       type={showPassword ? `text` : `password`}
                       id="password"
-                      class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=" "
                     />
 
                     <div
-                      class="flex absolute inset-y-0 right-0 items-center pr-3 cursor-pointer"
+                      className="flex absolute inset-y-0 right-0 items-center pr-3 cursor-pointer"
                       onClick={handleChange}
                     >
                       {!showPassword ? (
                         <svg
-                          class="w-5 h-5 pr-5 text-gray-500 dark:text-gray-400"
+                          className="w-5 h-5 pr-5 text-gray-500 dark:text-gray-400"
                           fill="currentColor"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 576 512"
@@ -105,7 +105,7 @@ const SignUp = (props) => {
                         </svg>
                       ) : (
                         <svg
-                          class="w-5 h-5 pr-5 text-gray-500 dark:text-gray-400"
+                          className="w-5 h-5 pr-5 text-gray-500 dark:text-gray-400"
                           fill="currentColor"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 640 512"
@@ -184,7 +184,7 @@ const SignUp = (props) => {
               </form>
             </div>
           </div>
-          <div className="w-1/2 h-screen flex flex-col justify-center items-center bg-primaryBlue">
+          <div className="w-1/2 flex flex-col justify-center items-center bg-primaryBlue">
             <h2 className="justify-self-start text-4xl text-white my-8">How does it work?</h2>
             <div className="text-white flex justify-center items-center">
               <ol className="">

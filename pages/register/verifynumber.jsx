@@ -1,11 +1,12 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import Head from 'next/head';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
 
-import SignUp from '../components/Authentication/Register/SignUp';
+import VerifyNumber from '../../components/Authentication/Register/VerifyNumber';
 
-export default function Home() {
-  const router = useRouter();
+const verifynumber = props => {
   return (
     <>
       <Head>
@@ -15,12 +16,16 @@ export default function Home() {
       </Head>
 
       <main>
-        <SignUp />
+        <VerifyNumber />
       </main>
 
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js" />
     </>
-  );
+  )
 }
 
+verifynumber.propTypes = {
 
+}
+
+export default verifynumber
