@@ -1,12 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
 
-import ResetPassword from '../../components/Authentication/Register/ResetPassword';
+import ResetPassword from '../../components/Authentication/Reset-Password/ResetPassword';
 
-const resetpassword = props => {
+const resetpassword = (props) => {
   return (
     <>
       <Head>
@@ -21,11 +21,9 @@ const resetpassword = props => {
 
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js" />
     </>
-  )
-}
+  );
+};
 
-resetpassword.propTypes = {
+resetpassword.propTypes = {};
 
-}
-
-export default resetpassword
+export default resetpassword;

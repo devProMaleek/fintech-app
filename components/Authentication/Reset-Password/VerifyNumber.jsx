@@ -25,65 +25,16 @@ const VerifyNumber = (props) => {
         </nav>
         <div className="py-4 px-4 sm:py-16 lg:px-6">
           <div className="flex flex-col justify-center items-center w-full h-full">
-            <div className="bg-white my-3 flex items-center space-x-6 h-14 rounded-t-lg px-4">
-              <div className="flex items-center space-x-3">
-                <div className="bg-primaryBlue flex justify-center items-center w-8 h-8 rounded-full ">
-                  <p className="text-white">1</p>
-                </div>
-                <h5 className="text-primary">Personal Details</h5>
-                <span className="">
-                  <svg
-                    className="w-5 h-5 text-primaryBlue"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 384 512"
-                  >
-                    <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
-                  </svg>
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="bg-white border-2 border-primaryBlue flex justify-center items-center w-8 h-8 rounded-full ">
-                  <p className="text-primaryBlue">2</p>
-                </div>
-                <h5 className="text-primaryBlue">Verifications</h5>
-                <span className="">
-                  <svg
-                    className="w-5 h-5 text-primaryBlue"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 384 512"
-                  >
-                    <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
-                  </svg>
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="bg-white border-2 border-primaryTextPlaceholder flex justify-center items-center w-8 h-8 rounded-full ">
-                  <p className="text-primaryTextPlaceholder">3</p>
-                </div>
-                <h5 className="text-primaryTextPlaceholder">Set Password</h5>
-                <span className="">
-                  <svg
-                    className="w-5 h-5 text-primaryTextPlaceholder"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 384 512"
-                  >
-                    <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
-                  </svg>
-                </span>
-              </div>
-            </div>
-            <div className="bg-white w-5xl p-8 text-center rounded-lg" style={{ width: '45%' }}>
+            <div className="bg-white mt-10 w-5xl p-8 text-center rounded-lg" style={{ width: '45%' }}>
               <div className="">
                 <div className="mt-4">
                   <Image src={Logo} width="100px" height="60px" className="mr-3 h-9" alt="Spring Logo" />
                 </div>
-                <h2 className="py-4 text-2xl font-nunito font-bold">Verify your Mobile Number</h2>
+                <h2 className="py-4 text-2xl font-nunito font-bold">Reset Password</h2>
                 <div className="my-4 mb-8 text-base font-normal">
-                  <p className="text-primaryTextPlaceholder">Enter the six digit code sent to your number</p>
-                  <span className="block text-primaryTextColor">+234 808 *** **76</span>
+                  <p className="text-primaryTextPlaceholder">
+                    Enter the six digit code sent to <span className="text-primaryTextColor">bo*******@gmail.com</span>
+                  </p>
                 </div>
                 <div
                   className="hidden max-w-lg mx-auto p-4 my-4 text-center text-base text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
@@ -145,12 +96,6 @@ const VerifyNumber = (props) => {
                     Continue
                   </button>
                 </form>
-                <div className="w-96 h-0.5 bg-gray-200 mx-auto my-6"></div>
-                <Link href="#">
-                  <a href="http://" className="text-primaryBlue text-base font-normal">
-                    Didn&apos;t receive a code?
-                  </a>
-                </Link>
               </div>
             </div>
           </div>
