@@ -8,11 +8,9 @@ const InvestmentPackages = (props) => {
 
   const investmentClickHandler = () => {
     setClicked(() => true);
-    console.log(clicked)
   };
   const packagesClickHandler = () => {
     setClicked(() => false);
-    console.log(clicked)
   };
   return (
     <>
