@@ -15,10 +15,10 @@ const InvestmentPackages = (props) => {
   return (
     <>
       <section className="bg-primaryPurple py-6 dark:bg-gray-900">
-        <div className="py-4 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+        <div className=" px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
           <h2 className="text-2xl text-primaryTextColor font-bold">Investment Packages</h2>
 
-          <div className="p-2 my-6 max-w-sm bg-white rounded-full border shadow-md dark:bg-gray-800 dark:border-gray-700">
+          <div className="p-2 my-4 max-w-sm bg-white rounded-full border shadow-md dark:bg-gray-800 dark:border-gray-700">
             <div className="grid grid-cols-2 gap-2">
               <div className={`${clicked ? `bg-transparent` : `bg-primaryBlue`} px-4 text-center py-2 rounded-full`}>
                 <button className="text-white text-base font-bold" type="button" onClick={packagesClickHandler}>

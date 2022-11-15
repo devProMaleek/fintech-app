@@ -7,7 +7,7 @@ const InvestmentContent = (props) => {
   console.log(props.clicked);
   return (
     <>
-      <section className="bg-primaryPurple pt-6 rounded-t-lg dark:bg-gray-900">
+      <section className="bg-primaryPurple pt-4 rounded-t-lg dark:bg-gray-900">
         <div className="bg-white rounded-t-xl">
           <div className=" py-4 px-4 mx-auto rounded-lg max-w-screen-xl sm:py-16 lg:px-6">
             <div>
