@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Logo from '../../public/assets/svgs/Spring-Logo.svg';
 
 const Navbar = (props) => {
-
   const currentPath = props.router.pathname;
   const allInvestPath = [
     `/investment`,
@@ -15,6 +14,7 @@ const Navbar = (props) => {
     `/investment/create/transactionpin`,
     `/investment/create/success`,
   ];
+  const transactionPaths = [`/transactions`, `/transactions/transactionsdetails`];
   return (
     <>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -153,7 +153,7 @@ const Navbar = (props) => {
                   <Link href="/transactions">
                     <a
                       className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
-                        currentPath === `/transactions` ? `border-blue-700 text-blue-700` : `border-transparent`
+                        transactionPaths.includes(currentPath) ? `border-blue-700 text-blue-700` : `border-transparent`
                       } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
                     >
                       Transactions

@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Navbar from '../../../components/Dashboard/Navbar';
+import Navbar from '../../../components/UI/Navbar';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import Head from 'next/head';
-import Breadcrumb from '../../../components/Investment/Breadcrumb';
 import SuccessTransaction from '../../../components/Defaults/SuccessTransaction';
 
 const SuccessInvestment = (props) => {

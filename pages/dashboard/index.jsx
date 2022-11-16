@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Script from 'next/script';
-import Navbar from '../../components/Dashboard/Navbar';
+import Navbar from '../../components/UI/Navbar';
 import Header from '../../components/Dashboard/Header';
 import TransactionInsight from '../../components/Dashboard/TransactionInsight';
 import InvestmentPackages from '../../components/Dashboard/InvestmentPackages';
