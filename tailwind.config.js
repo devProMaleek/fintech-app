@@ -34,14 +34,19 @@ module.exports = {
       },
     },
     clipPath: {
-      mypolygon: 'polygon(, 1% 0%1% 0%, 1% 100%, 1% 100%, 99% 100%, 99% 100%, 100% 1%, 100% 1%, 38% 0, 44% 8%, 62% 1%, 56% 8%, );',
+      mypolygon:
+        'polygon(, 1% 0%1% 0%, 1% 100%, 1% 100%, 99% 100%, 99% 100%, 100% 1%, 100% 1%, 38% 0, 44% 8%, 62% 1%, 56% 8%, );',
     },
     fontFamily: {
       nunito: ['nunito', 'sans'],
     },
     extend: {},
   },
-  plugins: [require('flowbite/plugin'), require('tailwind-clip-path')],
+  plugins: [
+    require('flowbite/plugin'),
+    require('tailwind-clip-path'),
+    require('flowbite-react'),
+  ],
   safelist: [
     {
       pattern:
