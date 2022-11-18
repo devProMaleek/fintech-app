@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 const Transactions = (props) => {
+  const router = useRouter();
   const submitHandler = (event) => {
     event.preventDefault();
   };
@@ -128,7 +130,7 @@ const Transactions = (props) => {
                   <p className="px-6 py-4 text-primaryTextPlaceholder font-bold text-base">October, 2022</p>
                 </div>
                 <div className="border rounded-lg">
-                  <div className="grid grid-cols-5 py-3 px-6">
+                  <div className="grid grid-cols-5 py-3 px-6 cursor-pointer" onClick={() => router.push(`/transactions/transactionsdetails`)}>
                     <div className="text-base font-normal text-primaryTextColor px-2">
                       <p className="">Thur 16th Oct, 2022 5:48:00pm</p>
                     </div>

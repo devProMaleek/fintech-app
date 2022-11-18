@@ -6,14 +6,19 @@ const TransactionPinForm = (props) => {
   const router = useRouter();
   const submitHandler = (event) => {
     event.preventDefault();
-    router.push('/investment/create/success')
+    router.push('/investment/create/success');
   };
   return (
     <section className="bg-white py-6 dark:bg-gray-900">
       <div className="py-4 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
         <div className="flex items-center space-x-5">
-          <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+          <svg
+            className="w-6 h-6 text-primaryTextColor"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path d="M177.5 98c-8.8-3.8-19-2-26 4.6l-144 136C2.7 243.1 0 249.4 0 256s2.7 12.9 7.5 17.4l144 136c7 6.6 17.2 8.4 26 4.6s14.5-12.5 14.5-22l0-88 288 0c17.7 0 32-14.3 32-32l0-32c0-17.7-14.3-32-32-32l-288 0 0-88c0-9.6-5.7-18.2-14.5-22z" />
           </svg>
           <h2 className="font-nunito font-bold text-xl text-primaryTextColor">Transaction Pin</h2>
         </div>

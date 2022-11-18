@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
 
-import Navbar from '../../components/Dashboard/Navbar';
+import Navbar from '../../components/UI/Navbar';
 import InvestmentPackages from '../../components/Investment/InvestmentPackages';
 
 
