@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '../../../public/assets/svgs/Spring-Logo.svg';
+import { useRouter } from 'next/router';
 
 const Login = (props) => {
+  const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
   const [clicked, setClicked] = useState(false);
 
@@ -158,7 +161,8 @@ const Login = (props) => {
                 <div className="flex justify-center">
                   <button
                     type="submit"
-                    className="my-8 max-w-xs text-blue bg-primaryPurple hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    onClick={() => router.push('/register')}
+                    className="my-8 max-w-xs text-blue bg-primaryPurple hover:bg-purple-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Register
                   </button>

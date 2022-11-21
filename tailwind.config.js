@@ -5,6 +5,7 @@ module.exports = {
     './node_modules/flowbite-react/**/*.js',
     './public/**/*.html',
     './src/**/*.{js,jsx}',
+    './node_modules/react-tailwindcss-select/dist/index.esm.js',
   ],
   theme: {
     screens: {
@@ -42,11 +43,7 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [
-    require('flowbite/plugin'),
-    require('tailwind-clip-path'),
-    require('flowbite-react'),
-  ],
+  plugins: [require('flowbite/plugin'), require('tailwind-clip-path'), require('flowbite-react')],
   safelist: [
     {
       pattern:
