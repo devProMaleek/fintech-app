@@ -43,7 +43,12 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [require('flowbite/plugin'), require('tailwind-clip-path'), require('flowbite-react')],
+  plugins: [
+    require('flowbite/plugin'),
+    require('tailwind-clip-path'),
+    require('flowbite-react'),
+    require('tailwind-scrollbar'),
+  ],
   safelist: [
     {
       pattern:

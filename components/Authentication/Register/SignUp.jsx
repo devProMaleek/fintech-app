@@ -1,24 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '../../../public/assets/svgs/Spring-Logo.svg';
 import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import { Spinner } from 'flowbite-react';
 
 const SignUp = (props) => {
-  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const initialState = {
+    firstName: '',
+    lastName: '',
+    phoneCode: '+234',
+    phoneNumber: '',
+    referralCode: '',
+    emailAddress: '',
+    password: '',
+  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm({ defaultValues: initialState });
+
+  useEffect(() => {
+    if (isSubmitSuccessful && !isSubmitting) { 
+      reset();
+    }
+  }, [isSubmitting, isSubmitSuccessful])
+  
+  const submitHandler = (userData) => {
+    console.log(userData);
+    router.push('/register/verifynumber');
+  };
 
   const handleChange = () => {
     setShowPassword(!showPassword);
   };
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-  };
   return (
     <>
-      <section className="bg-white h-screen dark:bg-gray-900">
+      <section className="bg-white min-h-screen dark:bg-gray-900">
         <div className="flex w-full h-full">
           <div className="w-1/2 ">
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -32,57 +57,81 @@ const SignUp = (props) => {
                 </div>
               </div>
             </nav>
-
+            
             <div className="py-8 px-4 ml-6 flex flex-col justify-center items-start sm:py-16 lg:px-6">
-              <form className="max-w-lg col-span-2" onSubmit={submitHandler}>
+              <form method="post" className="max-w-lg col-span-2" onSubmit={handleSubmit(submitHandler)}>
                 <h2 className="pb-4 font-medium font-nunito text-primaryTextColor text-lg">Register</h2>
                 <div className="border p-8 rounded-lg">
                   <div className="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
                       <label
-                        htmlFor="first_name"
+                        htmlFor="firstName"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                       >
                         First Name
                       </label>
                       <input
                         type="text"
-                        id="first_name"
-                        className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        id="firstName"
+                        name="firstName"
+                        className={
+                          errors.firstName
+                            ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                            : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                        }
                         placeholder="Francis"
-                        required=""
+                        {...register('firstName', { required: true })}
                       />
+                      {errors.firstName && (
+                        <span class="mt-2 text-sm text-red-600 dark:text-red-500">Field is required</span>
+                      )}
                     </div>
                     <div>
                       <label
-                        htmlFor="last_name"
+                        htmlFor="lastName"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                       >
                         Last Name
                       </label>
                       <input
                         type="text"
-                        id="last_name"
-                        className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        id="lastName"
+                        name="lastName"
+                        className={
+                          errors.lastName
+                            ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                            : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                        }
                         placeholder="Chijoke"
-                        required=""
+                        {...register('lastName', { required: true })}
                       />
+                      {errors.lastName && (
+                        <span class="mt-2 text-sm text-red-600 dark:text-red-500">Field is required</span>
+                      )}
                     </div>
                   </div>
                   <div className="mb-6">
                     <label
-                      htmlFor="email_address"
+                      htmlFor="emailAddress"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
                       Email Address
                     </label>
                     <input
                       type="email"
-                      id="email_address"
-                      className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      required=""
+                      id="emailAddress"
+                      name="emailAddress"
+                      className={
+                        errors.emailAddress
+                          ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                          : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      }
+                      placeholder="francischijoke001@gmail.com"
+                      {...register('emailAddress', { required: true })}
                     />
+                    {errors.emailAddress && (
+                      <span class="mt-2 text-sm text-red-600 dark:text-red-500">Field is required</span>
+                    )}
                   </div>
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                     Password
@@ -91,12 +140,20 @@ const SignUp = (props) => {
                     <input
                       type={showPassword ? `text` : `password`}
                       id="password"
-                      className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=" "
+                      name="password"
+                      className={
+                        errors.password
+                          ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                          : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      }
+                      placeholder=""
+                      {...register('password', { required: true })}
                     />
 
                     <div
-                      className="flex absolute inset-y-0 right-0 items-center pr-3 cursor-pointer"
+                      className={`flex absolute ${
+                        errors.password ? `top-3` : `inset-y-0`
+                      } right-0 items-center pr-3 cursor-pointer`}
                       onClick={handleChange}
                     >
                       {!showPassword ? (
@@ -119,9 +176,12 @@ const SignUp = (props) => {
                         </svg>
                       )}
                     </div>
+                    {errors.password && (
+                      <span class="mt-2 text-sm text-red-600 dark:text-red-500">Field is required</span>
+                    )}
                   </div>
                   <label
-                    htmlFor="phone_number"
+                    htmlFor="phoneNumber"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
                   >
                     Phone Number
@@ -129,9 +189,15 @@ const SignUp = (props) => {
                   <div className="w-full flex">
                     <div className="w-1/6">
                       <select
-                        id="phone_code"
+                        id="phoneCode"
+                        name="phoneCode"
                         defaultValue="+234"
-                        className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className={
+                          errors.phoneCode
+                            ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 pr-8 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                            : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                        }
+                        {...register('phoneCode', { required: true })}
                       >
                         <option value="+234">+234</option>
                         <option value="+233">+233</option>
@@ -141,35 +207,51 @@ const SignUp = (props) => {
                     <div className="w-72">
                       <input
                         type="text"
-                        id="phone_number"
-                        className="ml-4 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        className={
+                          errors.phoneNumber
+                            ? `ml-4 bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                            : `ml-4 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                        }
                         placeholder=""
-                        required=""
+                        {...register('phoneNumber', { required: true })}
                       />
+                      {errors.phoneNumber && (
+                        <span class="mt-2 ml-4 text-sm text-red-600 dark:text-red-500">Field is required</span>
+                      )}
                     </div>
                   </div>
                   <div className="mt-6">
                     <label
-                      htmlFor="referral_code"
+                      htmlFor="referralCode"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
                       Referral Code
                     </label>
                     <input
                       type="text"
-                      id="referral_code"
-                      className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      id="referralCode"
+                      name="referralCode"
+                      className={
+                        errors.referralCode
+                          ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                          : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      }
                       placeholder=""
-                      required=""
+                      {...register('referralCode', { required: true })}
                     />
+                    {errors.referralCode && (
+                      <span class="mt-2 text-sm text-red-600 dark:text-red-500">Field is required</span>
+                    )}
                   </div>
                 </div>
                 <div className="flex justify-center">
                   <button
                     type="submit"
-                    className="my-8 max-w-xs text-white bg-primaryBlue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="my-8 max-w-xs text-white  bg-primaryBlue hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
-                    Continue
+                    {isSubmitting ? <Spinner /> : `Continue`}
                   </button>
                 </div>
                 <div className="flex items-center justify-center">
@@ -180,7 +262,7 @@ const SignUp = (props) => {
 
                 <div className="flex justify-center">
                   <button
-                    type="submit"
+                    type="button"
                     onClick={() => router.push('/login')}
                     className="my-8 max-w-xs text-blue bg-primaryPurple hover:bg-purple-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >

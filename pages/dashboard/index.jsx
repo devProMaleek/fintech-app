@@ -17,10 +17,10 @@ export default function Home() {
         <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
       </Head>
 
-      <main>
+      <main className="scrollbar-none scrollbar-track-gray-400/20 scrollbar-thumb-red-500/80">
         <Navbar router={router} />
         <Header />
-        <TransactionInsight/>
+        <TransactionInsight />
         <InvestmentPackages />
         <Referral />
       </main>

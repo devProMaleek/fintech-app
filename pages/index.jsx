@@ -14,7 +14,7 @@ export default function Home() {
         <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
       </Head>
 
-      <main>
+      <main className='scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-primaryBlue/80'>
         <SignUp />
       </main>
 
