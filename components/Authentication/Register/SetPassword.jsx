@@ -1,12 +1,77 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '../../../public/assets/svgs/Spring-Logo.svg';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
 
 const SetPassword = (props) => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const initialPasswordState = {
+    backgroundColor: '',
+    textContent: '',
+  };
+
+  const [passwordState, setPasswordState] = useState(initialPasswordState);
+
+  const strengthChecker = (password) => {
+    let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+    let mediumPassword = new RegExp(
+      '((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))'
+    );
+
+    if (strongPassword.test(password)) {
+      setPasswordState((prevState) => {
+        return {
+          ...prevState,
+          backgroundColor: 'green',
+          textContent: 'Strong Password',
+        };
+      });
+      return true;
+    } else if (mediumPassword.test(password)) {
+      setPasswordState((prevState) => {
+        return {
+          ...prevState,
+          backgroundColor: 'blue',
+          textContent: 'Medium Password',
+        };
+      });
+      return false;
+    } else {
+      setPasswordState((prevState) => {
+        return {
+          ...prevState,
+          backgroundColor: 'red',
+          textContent: 'Weak Password',
+        };
+      });
+      return false;
+    }
+  };
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm();
+
+  useEffect(() => {
+    if (isSubmitSuccessful && !isSubmitting) {
+      reset();
+    }
+  }, [isSubmitting, isSubmitSuccessful]);
+
+  const submitHandler = (userData) => {
+    console.log(userData);
+    router.push('/login');
+  };
 
   const handleChange = () => {
     setShowPassword(!showPassword);
@@ -21,8 +86,9 @@ const SetPassword = (props) => {
           <div className="container flex justify-between items-center h-24 mx-auto">
             <div className="flex items-center space-x-5">
               <svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6 text-white cursor-pointer"
                 fill="currentColor"
+                onClick={() => router.back()}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
               >
@@ -93,25 +159,49 @@ const SetPassword = (props) => {
                 <div className="my-4 mb-8 text-base font-normal">
                   <p className="text-primaryTextPlaceholder">Set new Password for your account</p>
                 </div>
-                <form action="" method="post">
+                <form action="" method="post" onSubmit={handleSubmit(submitHandler)}>
                   <div className="max-w-md my-4 mx-auto border rounded-lg p-6">
+                    <div
+                      className={`${passwordState.textContent.length === 0 ? `hidden` : `block`} p-4 mb-4 text-sm  ${
+                        passwordState.textContent === 'Strong Password'
+                          ? `text-green-700 bg-green-100`
+                          : passwordState.textContent === 'Medium Password'
+                          ? `text-blue-700 bg-blue-100`
+                          : `text-red-700 bg-red-100`
+                      } rounded-lg dark:bg-green-200 dark:text-green-800`}
+                      role="alert"
+                    >
+                      <span className="font-medium">{passwordState.textContent}</span>
+                    </div>
                     <div className="">
                       <label
                         htmlFor="password"
                         className="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-gray-300"
                       >
-                        New Password
+                        Password
                       </label>
                       <div className="relative mb-6">
                         <input
                           type={showPassword ? `text` : `password`}
                           id="password"
-                          className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder=" "
+                          name="password"
+                          className={
+                            errors.password
+                              ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                              : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                          }
+                          placeholder=""
+                          {...register('password', {
+                            required: true,
+                            validate: (value) => strengthChecker(value) || 'The password is invalid',
+                            onChange: (event) => strengthChecker(event.target.value),
+                          })}
                         />
 
                         <div
-                          className="flex absolute inset-y-0 right-0 items-center pr-3 cursor-pointer"
+                          className={`flex absolute ${
+                            errors.password ? `top-3` : `inset-y-0`
+                          } right-0 items-center pr-3 cursor-pointer`}
                           onClick={handleChange}
                         >
                           {!showPassword ? (
@@ -134,11 +224,16 @@ const SetPassword = (props) => {
                             </svg>
                           )}
                         </div>
+                        {errors.password && (
+                          <span className="block mt-1 text-sm text-left text-red-600 dark:text-red-500">
+                            {errors.password.message || `Field is required`}
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="">
                       <label
-                        htmlFor="password"
+                        htmlFor="confirm-password"
                         className="block mb-2 text-left text-sm font-medium text-gray-900 dark:text-gray-300"
                       >
                         Confirm New Password
@@ -146,13 +241,28 @@ const SetPassword = (props) => {
                       <div className="relative mb-6">
                         <input
                           type={showConfirmPassword ? `text` : `password`}
-                          id="password"
-                          className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder=" "
+                          id="confirm-password"
+                          name="confirmPassword"
+                          className={
+                            errors.confirmPassword
+                              ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                              : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                          }
+                          placeholder=""
+                          {...register('confirmPassword', {
+                            required: true,
+                            validate: (value) => {
+                              if (watch('password') != value) {
+                                return 'Your passwords do not  match';
+                              }
+                            },
+                          })}
                         />
 
                         <div
-                          className="flex absolute inset-y-0 right-0 items-center pr-3 cursor-pointer"
+                          className={`flex absolute ${
+                            errors.confirmPassword ? `top-3` : `inset-y-0`
+                          } right-0 items-center pr-3 cursor-pointer`}
                           onClick={handleConfirmChange}
                         >
                           {!showConfirmPassword ? (
@@ -175,6 +285,11 @@ const SetPassword = (props) => {
                             </svg>
                           )}
                         </div>
+                        {errors.confirmPassword && (
+                          <span className="block mt-1 text-sm text-left text-red-600 dark:text-red-500">
+                            {errors.confirmPassword.message || `Field is required`}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>

@@ -1,10 +1,90 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Logo from '../../../public/assets/svgs/Spring-Logo.svg';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import { Spinner } from 'flowbite-react';
 
 const VerifyNumber = (props) => {
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm();
+
+  useEffect(() => {
+    if (isSubmitSuccessful && !isSubmitting) {
+      reset();
+    }
+  }, [isSubmitting, isSubmitSuccessful]);
+
+  const submitHandler = (userData) => {
+    console.log(Object.values(userData).join(''));
+    router.push('/register/setpassword')
+  };
+
+  const splitNumber = (event) => {
+    let data = event.target.value;
+    if (!data) return;
+    if (data.length === 1) return;
+
+    popupNext(e.target, data);
+    for (let i = 0; i < data.length; i++) {
+      inputs[i].value = data[i];
+    }
+  };
+
+  const popupNext = (element, data) => {
+    element.value = data[0];
+    data = data.substring(1);
+    if (element.nextElementSibling && data.length) {
+      popupNext(element.nextElementSibling, data);
+    }
+  };
+  const inputHandler = (event) => {
+    let input1 = document.getElementById('otc-1'),
+      inputs = document.querySelectorAll('input[type="text"]');
+
+    inputs.forEach(function (input) {
+      input.addEventListener('keyup', function (e) {
+        if (e.keyCode === 16 || e.keyCode === 9 || e.keyCode === 224 || e.keyCode === 18 || e.keyCode === 17) {
+          return;
+        }
+        if (
+          (e.keyCode === 8 || e.keyCode === 37) &&
+          this.previousElementSibling &&
+          this.previousElementSibling.tagName === 'INPUT'
+        ) {
+          this.previousElementSibling.select();
+        } else if (e.keyCode !== 8 && this.nextElementSibling) {
+          this.nextElementSibling.select();
+        }
+        if (e.target.value.length > 1) {
+          splitNumber(e);
+        }
+      });
+      input.addEventListener('focus', function (e) {
+        if (this === input1) return;
+
+        // If value of input 1 is empty, focus it.
+        if (input1.value === '') {
+          input1.focus();
+        }
+
+        // If value of a previous input is empty, focus it.
+        // To remove if you don't wanna force user respecting the fields order.
+        if (this.previousElementSibling.value === '') {
+          this.previousElementSibling.focus();
+        }
+      });
+    });
+    input1.addEventListener('input', splitNumber);
+  };
   return (
     <>
       <section className="bg-primaryBlue h-screen dark:bg-gray-900">
@@ -12,8 +92,9 @@ const VerifyNumber = (props) => {
           <div className="container flex justify-between items-center h-24 mx-auto">
             <div className="flex items-center space-x-5">
               <svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6 text-white cursor-pointer"
                 fill="currentColor"
+                onClick={() => router.back()}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
               >
@@ -93,42 +174,79 @@ const VerifyNumber = (props) => {
                     Verification code has been sent to both Whatsapp and Mobile Number
                   </p>
                 </div>
-                <form action="" method="post">
+                <form action="" method="post" onSubmit={handleSubmit(submitHandler)}>
                   <div className="max-w-lg my-4 mx-auto grid grid-cols-6 justify-items-center border rounded-lg p-6">
                     <input
                       type="text"
-                      id="default-input"
+                      id="otc-1"
                       maxLength="1"
-                      className="bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      name="input1"
+                      className={
+                        errors.input1
+                          ? `bg-red-50 mx-auto w-12 border border-red-500 text-red-900 placeholder-red-700 text-2xl text-center font-bold rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block p-3 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                          : `bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      }
+                      {...register('input1', { required: true, onChange: (event) => inputHandler(event) })}
                     />
                     <input
                       type="text"
-                      id="default-input"
+                      id="otc-2"
                       maxLength="1"
-                      className="bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      name="input2"
+                      className={
+                        errors.input2
+                          ? `bg-red-50 mx-auto w-12 border border-red-500 text-red-900 placeholder-red-700 text-2xl text-center font-bold rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block p-3 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                          : `bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      }
+                      {...register('input2', { required: true, onChange: (event) => inputHandler(event) })}
                     />
                     <input
                       type="text"
-                      id="default-input"
-                      className="bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      id="otc-3"
+                      maxLength="1"
+                      name="input3"
+                      className={
+                        errors.input3
+                          ? `bg-red-50 mx-auto w-12 border border-red-500 text-red-900 placeholder-red-700 text-2xl text-center font-bold rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block p-3 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                          : `bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      }
+                      {...register('input3', { required: true, onChange: (event) => inputHandler(event) })}
                     />
                     <input
                       type="text"
-                      id="default-input"
+                      id="otc-4"
                       maxLength="1"
-                      className="bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      name="input4"
+                      className={
+                        errors.input4
+                          ? `bg-red-50 mx-auto w-12 border border-red-500 text-red-900 placeholder-red-700 text-2xl text-center font-bold rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block p-3 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                          : `bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      }
+                      {...register('input4', { required: true, onChange: (event) => inputHandler(event) })}
                     />
                     <input
                       type="text"
-                      id="default-input"
+                      id="otc-5"
                       maxLength="1"
-                      className="bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      name="input5"
+                      className={
+                        errors.input5
+                          ? `bg-red-50 mx-auto w-12 border border-red-500 text-red-900 placeholder-red-700 text-2xl text-center font-bold rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block p-3 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                          : `bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      }
+                      {...register('input5', { required: true, onChange: (event) => inputHandler(event) })}
                     />
                     <input
                       type="text"
-                      id="default-input"
+                      id="otc-6"
                       maxLength="1"
-                      className="bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      name="input6"
+                      className={
+                        errors.input6
+                          ? `bg-red-50 mx-auto w-12 border border-red-500 text-red-900 placeholder-red-700 text-2xl text-center font-bold rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block p-3 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                          : `bg-gray-200 mx-auto w-12 border border-gray-300 text-gray-900 text-2xl text-center font-bold rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                      }
+                      {...register('input6', { required: true, onChange: (event) => inputHandler(event) })}
                     />
                   </div>
                   <div className="my-4 pt-6">
