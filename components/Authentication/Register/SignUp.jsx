@@ -164,7 +164,7 @@ const SignUp = (props) => {
                     </div>
                     <div className="w-72">
                       <input
-                        type="text"
+                        type="tel"
                         id="phoneNumber"
                         name="phoneNumber"
                         className={
@@ -173,10 +173,14 @@ const SignUp = (props) => {
                             : `ml-4 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
                         }
                         placeholder=""
-                        {...register('phoneNumber', { required: true })}
+                        {...register('phoneNumber', {
+                          required: true,
+                          minLength: { value: 5, message: 'The number is too short' },
+                          maxLength: { value: 10, message: 'The number is too long' },
+                        })}
                       />
                       {errors.phoneNumber && (
-                        <span className="mt-2 ml-4 text-sm text-red-600 dark:text-red-500">Field is required</span>
+                        <span className="mt-2 ml-4 text-sm text-red-600 dark:text-red-500">{errors.phoneNumber.message || `Field is required`}</span>
                       )}
                     </div>
                   </div>
