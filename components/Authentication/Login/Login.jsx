@@ -88,8 +88,9 @@ const Login = (props) => {
             <div className="py-8 px-4 ml-6 flex flex-col justify-center items-start sm:py-16 lg:px-6">
               <div className="flex items-center space-x-3 mb-4">
                 <svg
-                  className="w-6 h-6 text-primaryTextColor"
+                  className="w-6 h-6 text-primaryTextColor cursor-pointer"
                   fill="currentColor"
+                  onClick={() => router.back()}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                 >

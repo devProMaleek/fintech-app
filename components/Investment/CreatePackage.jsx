@@ -1,12 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CreateInvestmentModal from './CreateInvestmentModal';
+import { useForm } from 'react-hook-form';
 
 const CreatePackage = (props) => {
   const [openModal, setOpenModal] = useState('undefined');
-  const submitHandler = (event) => {
-    event.preventDefault();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm();
+
+  useEffect(() => {
+    if (isSubmitSuccessful && !isSubmitting) {
+      reset();
+    }
+  }, [isSubmitting, isSubmitSuccessful]);
+
+  const submitHandler = (userData) => {
+    console.log(userData);
+    setOpenModal('default')
   };
+
   return (
     <section className="bg-white py-6 dark:bg-gray-900">
       <div className="py-4 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
@@ -23,7 +40,7 @@ const CreatePackage = (props) => {
         </div>
 
         <div className="mt-10 grid grid-cols-3">
-          <form className="max-w-3xl col-span-2" onSubmit={submitHandler}>
+          <form className="max-w-3xl col-span-2" onSubmit={handleSubmit(submitHandler)}>
             <div className="border p-8 rounded-lg">
               <h2 className="pb-4 font-medium font-nunito text-primaryTextColor text-lg">Create Investment Plan</h2>
               <div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -34,50 +51,83 @@ const CreatePackage = (props) => {
                   <input
                     type="text"
                     id="amount"
-                    className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="amount"
+                    className={
+                      errors.amount
+                        ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                        : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                    }
                     placeholder="Amount To Invest"
-                    required=""
+                    {...register('amount', {
+                      required: true,
+                    })}
                   />
+                  {errors.amount && (
+                    <span className="mt-2 text-sm text-red-600 dark:text-red-500">
+                      {errors.amount.message || `Field is required`}
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label
-                    htmlFor="countries"
+                    htmlFor="source"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
                   >
                     Source
                   </label>
                   <select
-                    id="countries"
+                    id="source"
+                    name='source'
                     defaultValue="springBalance"
-                    className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className={
+                      errors.source
+                        ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 pr-8 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                        : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                    }
+                    {...register('source', { required: true })}
                   >
                     <option value="springBalance">Spring Balance</option>
                     <option value="bankTransfer">Bank Transfer</option>
                     <option value="cash">Cash</option>
                   </select>
+                  {errors.source && (
+                    <span className="mt-2 text-sm text-red-600 dark:text-red-500">
+                      {errors.source.message || `Field is required`}
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label
-                    htmlFor="countries"
+                    htmlFor="tenure"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
                   >
                     Tenure
                   </label>
                   <select
-                    id="countries"
-                    defaultValue="bankTransfer"
-                    className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
+                    id="tenure"
+                    name='tenure'
+                    defaultValue="springBalance"
+                    className={
+                      errors.tenure
+                        ? `bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 pr-8 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500`
+                        : `bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                    }
+                    {...register('tenure', { required: true })}
+                    >
                     <option value="springBalance">Spring Balance</option>
                     <option value="bankTransfer">Bank Transfer</option>
                     <option value="cash">Cash</option>
                   </select>
+                  {errors.tenure && (
+                    <span className="mt-2 text-sm text-red-600 dark:text-red-500">
+                      {errors.tenure.message || `Field is required`}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
             <button
               type="submit"
-              onClick={() => setOpenModal('default')}
               className="my-8 ml-6 max-w-xs text-white bg-primaryBlue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Continue
