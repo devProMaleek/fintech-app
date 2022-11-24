@@ -1,9 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import Datepicker from 'react-tailwindcss-datepicker';
 
 const Transactions = (props) => {
   const router = useRouter();
+
+  const initialDateState = {
+    startDate: null,
+    endDate: null,
+  };
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const handleStartDateChange = (newStartDate) => {
+    setStartDate(newStartDate);
+  };
+
+  const handleEndDateChange = (newEndDate) => {
+    setEndDate(newEndDate);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
   };
@@ -39,10 +56,13 @@ const Transactions = (props) => {
                               ></path>
                             </svg>
                           </div>
-                          <input
-                            type="text"
+                          <Datepicker
                             className="bg-gray-200 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pr-10 p-2  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Start Date"
+                            useRange={false}
+                            asSingle={true}
+                            value={startDate}
+                            placeholder={'Start Date'}
+                            onChange={handleStartDateChange}
                           />
                         </div>
                         <div className="relative mb-3">
@@ -61,10 +81,13 @@ const Transactions = (props) => {
                               ></path>
                             </svg>
                           </div>
-                          <input
-                            type="text"
+                          <Datepicker
                             className="bg-gray-200 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pr-10 p-2  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Start Date"
+                            useRange={false}
+                            asSingle={true}
+                            value={endDate}
+                            placeholder={'End Date'}
+                            onChange={handleEndDateChange}
                           />
                         </div>
                         <div className="mb-3">
