@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import InvestmentContent from './InvestmentContent';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import TransferContent from './TransferContent';
 
-const InvestmentPackages = (props) => {
+const Transfer = (props) => {
   const [clicked, setClicked] = useState(false);
 
-  const investmentClickHandler = () => {
+  const transferBankClickHandler = () => {
     setClicked(() => true);
   };
-  const packagesClickHandler = () => {
+  const transferSpringClickHandler = () => {
     setClicked(() => false);
   };
   return (
@@ -20,25 +20,25 @@ const InvestmentPackages = (props) => {
           <div className="p-2 mt-6 mb-2 max-w-sm bg-white rounded-full border shadow-md dark:bg-gray-800 dark:border-gray-700">
             <div className="grid grid-cols-2 gap-2">
               <div className={`${clicked ? `bg-transparent` : `bg-primaryBlue`} px-4 text-center py-2 rounded-full`}>
-                <button className="text-white text-base font-bold" type="button" onClick={packagesClickHandler}>
-                  <span className={`${clicked ? `text-primaryTextColor` : `text-white`} text-base font-nunito font-bold`}>Explore Packages</span>
+                <button className="text-white text-base font-bold" type="button" onClick={transferSpringClickHandler}>
+                  <span className={`${clicked ? `text-primaryTextColor` : `text-white`} text-base font-nunito font-bold`}>Transfer to Spring</span>
                 </button>
               </div>
               <div className={`${!clicked ? `bg-transparent` : `bg-primaryBlue`} px-4 text-center py-2 rounded-full`}>
-                <button className="text-primaryTextColor text-base font-bold" type="button" onClick={investmentClickHandler}>
-                  <span className={`${!clicked ? `text-primaryTextColor` : `text-white`} text-base font-nunito font-bold`}>My Investments</span>
+                <button className="text-primaryTextColor text-base font-bold" type="button" onClick={transferBankClickHandler}>
+                  <span className={`${!clicked ? `text-primaryTextColor` : `text-white`} text-base font-nunito font-bold`}>Transfer to Bank</span>
                 </button>
               </div>
             </div>
           </div>
         </div>
-      <InvestmentContent clicked={clicked} />
+        <TransferContent clicked={clicked}/>
       </section>
 
     </>
   );
 };
 
-InvestmentPackages.propTypes = {};
+Transfer.propTypes = {}
 
-export default InvestmentPackages;
+export default Transfer
