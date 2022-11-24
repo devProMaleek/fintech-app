@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { bankLists } from '../../public/assets/data/bankList';
 
 import Select from 'react-tailwindcss-select';
 
 const TransferBank = (props) => {
   const [bank, setBank] = useState(null);
 
-  const options = [
-    { value: 'fox', label: '🦊 Fox' },
-    { value: 'Butterfly', label: '🦋 Butterfly' },
-    { value: 'Honeybee', label: '🐝 Honeybee' },
-  ];
+  const bankOptions =  bankLists?.map((bank, idx) => {
+    return {
+      value: bank.code,
+      label: bank.name,
+      key: idx
+    };
+  });
 
   const handleChange = (value) => {
     console.log('value:', value);
@@ -56,27 +59,18 @@ const TransferBank = (props) => {
                       </label>
                       <Select
                         value={bank}
-                        className="bg-gray-200 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-gray-200 border border-gray-300 text-gray-900 text-base rounded-lg placeholder-red-500 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         onChange={handleChange}
-                        options={options}
+                        options={bankOptions}
                         placeholder="Select Bank"
                         searchInputPlaceholder="Search Beneficiary Bank"
                         isSearchable
                       />
-                      {/* <select
-                        id="countries"
-                        defaultValue="springBalance"
-                        className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      >
-                        <option value="springBalance">Spring Balance</option>
-                        <option value="bankTransfer">Bank Transfer</option>
-                        <option value="cash">Cash</option>
-                      </select> */}
                     </div>
                   </div>
                   <button
                     type="submit"
-                    className="max-w-xs text-primaryBlue bg-primaryPurple focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="max-w-xs text-primaryBlue bg-primaryPurple focus:ring-0 focus:outline-none focus:ring-primaryPurple font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center"
                   >
                     Verify Beneficiary
                   </button>
