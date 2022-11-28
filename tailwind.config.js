@@ -44,10 +44,10 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
     require('flowbite/plugin'),
     require('tailwind-clip-path'),
     require('flowbite-react'),
-    require('tailwind-scrollbar'),
   ],
   safelist: [
     {
