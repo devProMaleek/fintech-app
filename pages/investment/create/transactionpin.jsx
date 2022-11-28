@@ -6,7 +6,7 @@ import Script from 'next/script';
 import Link from 'next/link';
 import Head from 'next/head';
 import Breadcrumb from '../../../components/UI/Breadcrumb';
-import TransactionPinForm from '../../../components/Investment/TransactionPinForm';
+import TransactionPinForm from '../../../components/Defaults/TransactionPinForm';
 
 const TransactionPin = (props) => {
   const router = useRouter();
@@ -105,7 +105,7 @@ const TransactionPin = (props) => {
             </div>
           </li>
         </Breadcrumb>
-        <TransactionPinForm />
+        <TransactionPinForm urlToRoute={'/investments/create/success'} />
       </main>
 
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js" />

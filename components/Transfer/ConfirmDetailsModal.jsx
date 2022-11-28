@@ -40,7 +40,7 @@ const ConfirmDetailsModal = (props) => {
             </div>
           </Modal.Body>
           <div className="text-center">
-            <Link href="/investment/create/transactionpin">
+            <Link href="/transfer/transactionpin">
               <a className="">
                 <button
                   type="button"
