@@ -180,7 +180,7 @@ const TransferBank = (props) => {
                         ) : (
                           <button
                             type="submit"
-                            className="max-w-xs text-primaryBlue bg-primaryPurple focus:ring-0 focus:outline-none focus:ring-primaryPurple font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center"
+                            className="max-w-sm text-primaryBlue bg-primaryPurple focus:ring-0 focus:outline-none focus:ring-primaryPurple font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center"
                           >
                             Verify Beneficiary
                           </button>
@@ -313,13 +313,15 @@ const TransferBank = (props) => {
                   )}
                 </div>
               </div>
-              <button
-                type="submit"
-                onClick={handleTransferSubmit(submitTransferHandler)}
-                className="my-8 ml-6 max-w-xs text-white bg-primaryBlue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Continue
-              </button>
+              {showBeneficiary && (
+                <button
+                  type="submit"
+                  onClick={handleTransferSubmit(submitTransferHandler)}
+                  className="my-8 ml-6 max-w-xs text-white bg-primaryBlue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Continue
+                </button>
+              )}
             </div>
             <div className="">
               <div className="px-6 py-8 max-w-sm bg-primaryDarkPurple text-center rounded-lg border shadow-none dark:bg-gray-800 dark:border-gray-700">
