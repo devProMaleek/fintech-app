@@ -322,11 +322,11 @@ const TransferSpring = (props) => {
         </div>
       </section>
 
-      {/* <ConfirmDetailsModal
+      <ConfirmDetailsModal
         openConfirmDetailsModal={openConfirmDetailsModal}
         setOpenConfirmDetailsModal={setOpenConfirmDetailsModal}
       />
-      <ChooseBeneficiaryModal
+      {/* <ChooseBeneficiaryModal
         openChooseBeneficiaryModal={openChooseBeneficiaryModal}
         setOpenChooseBeneficiaryModal={setOpenChooseBeneficiaryModal}
       />
