@@ -18,6 +18,7 @@ const Navbar = (props) => {
     `/transfer`,
     `/transfer/transactionpin`,
     `/transfer/success`,
+    `/transfer/failed`,
   ];
   const transactionPaths = [`/transactions`, `/transactions/transactionsdetails`];
   return (
