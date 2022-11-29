@@ -330,11 +330,11 @@ const TransferSpring = (props) => {
         openChooseBeneficiaryModal={openChooseBeneficiaryModal}
         setOpenChooseBeneficiaryModal={setOpenChooseBeneficiaryModal}
       />
-      {/* <SaveBeneficiaryModal
+      <SaveBeneficiaryModal
         openSaveBeneficiaryModal={openSaveBeneficiaryModal}
         setOpenSaveBeneficiaryModal={setOpenSaveBeneficiaryModal}
         beneficiaryInfos={beneficiaryInfos}
-      /> */}
+      />
     </>
   );
 };
