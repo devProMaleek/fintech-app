@@ -175,7 +175,7 @@ const TransferSpring = (props) => {
                       )}
                     </div>
                   </form>
-                  {/* {showBeneficiary && (
+                  {showBeneficiary && (
                     <div className="">
                       <div style={{ borderTopWidth: '1px', borderBottomWidth: '1px' }} className="py-4 px-6">
                         <div className="flex items-center justify-between">
@@ -295,7 +295,7 @@ const TransferSpring = (props) => {
                         </div>
                       </form>
                     </div>
-                  )} */}
+                  )}
                 </div>
               </div>
               {showBeneficiary && (
@@ -322,7 +322,7 @@ const TransferSpring = (props) => {
         </div>
       </section>
 
-      <ConfirmDetailsModal
+      {/* <ConfirmDetailsModal
         openConfirmDetailsModal={openConfirmDetailsModal}
         setOpenConfirmDetailsModal={setOpenConfirmDetailsModal}
       />
@@ -334,7 +334,7 @@ const TransferSpring = (props) => {
         openSaveBeneficiaryModal={openSaveBeneficiaryModal}
         setOpenSaveBeneficiaryModal={setOpenSaveBeneficiaryModal}
         beneficiaryInfos={beneficiaryInfos}
-      />
+      /> */}
     </>
   );
 };
