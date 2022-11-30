@@ -7,12 +7,15 @@ import Loader from '../../public/assets/svgs/Loader.svg';
 import Image from 'next/image';
 import { useForm, Controller } from 'react-hook-form';
 import ConfirmDetailsModal from './ConfirmDetailsModal';
+import ChooseBeneficiaryModal from './ChooseBeneficiaryModal';
+
 
 const TransferBank = (props) => {
   const [loader, setLoader] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showBeneficiary, setShowBeneficiary] = useState(false);
   const [openConfirmDetailsModal, setOpenConfirmDetailsModal] = useState('undefined');
+  const [openChooseBeneficiaryModal, setOpenChooseBeneficiaryModal] = useState('undefined');
 
   const {
     register,
@@ -109,7 +112,7 @@ const TransferBank = (props) => {
                             </span>
                           )}
                         </div>
-                        <p className="font-medium text-primaryDarkPurple">Choose Beneficiary</p>
+                        <p className="font-medium text-primaryDarkPurple cursor-pointer" onClick={() => setOpenChooseBeneficiaryModal('default')}>Choose Beneficiary</p>
                       </div>
                       <div className="">
                         <div>
@@ -313,6 +316,7 @@ const TransferBank = (props) => {
       </section>
 
       <ConfirmDetailsModal openConfirmDetailsModal={openConfirmDetailsModal} setOpenConfirmDetailsModal={setOpenConfirmDetailsModal} />
+      <ChooseBeneficiaryModal openChooseBeneficiaryModal={openChooseBeneficiaryModal} setOpenChooseBeneficiaryModal={setOpenChooseBeneficiaryModal} />
 
     </>
   );
