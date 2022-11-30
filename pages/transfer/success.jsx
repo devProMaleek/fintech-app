@@ -6,7 +6,7 @@ import Script from 'next/script';
 import Head from 'next/head';
 import SuccessTransfer from '../../components/Transfer/SuccessTransfer';
 
-const SuccessInvestment = (props) => {
+const SuccessTransferPage = (props) => {
   const router = useRouter();
   return (
     <>
@@ -26,6 +26,6 @@ const SuccessInvestment = (props) => {
   );
 };
 
-SuccessInvestment.propTypes = {};
+SuccessTransferPage.propTypes = {};
 
-export default SuccessInvestment;
+export default SuccessTransferPage;

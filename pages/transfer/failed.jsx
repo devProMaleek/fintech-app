@@ -4,9 +4,9 @@ import Navbar from '../../components/UI/Navbar';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import Head from 'next/head';
-import TransactionPinForm from '../../components/Defaults/TransactionPinForm';
+import FailedTransaction from '../../components/Defaults/FailedTransaction';
 
-const TransactionPin = (props) => {
+const FailedTransferPage = (props) => {
   const router = useRouter();
   return (
     <>
@@ -18,7 +18,7 @@ const TransactionPin = (props) => {
 
       <main>
         <Navbar router={router} />
-        <TransactionPinForm urlToRoute={'/transfer/failed'} />
+        <FailedTransaction />
       </main>
 
       <Script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js" />
@@ -26,6 +26,6 @@ const TransactionPin = (props) => {
   );
 };
 
-TransactionPin.propTypes = {};
+FailedTransferPage.propTypes = {};
 
-export default TransactionPin;
+export default FailedTransferPage;

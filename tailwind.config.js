@@ -20,6 +20,7 @@ module.exports = {
       primaryYellow: '#FDC37A',
       primaryPurple: '#E7E9FF',
       primaryGreen: '#1E9940',
+      primaryRed: '#CF4A6A',
       primaryTextPlaceholder: '#9B9B9B',
       primaryGrayText: '#8F8F8F',
       primaryDarkGreen: '#058C1A',
@@ -52,7 +53,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /(bg|text|border)-primary(Purple|DarkPurple|Blue|TextColor|Yellow|LightYellow|HighlightYellow|Green|DarkGreen|LightGreen|TextPlaceholder|GrayText|LightGrey|)/,
+        /(bg|text|border)-primary(Purple|DarkPurple|Blue|TextColor|Yellow|Red|LightYellow|HighlightYellow|Green|DarkGreen|LightGreen|TextPlaceholder|GrayText|LightGrey|)/,
     },
   ],
 };
