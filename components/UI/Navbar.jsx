@@ -14,6 +14,11 @@ const Navbar = (props) => {
     `/investment/create/transactionpin`,
     `/investment/create/success`,
   ];
+  const transferPaths = [
+    `/transfer`,
+    `/transfer/transactionpin`,
+    `/transfer/success`,
+  ];
   const transactionPaths = [`/transactions`, `/transactions/transactionsdetails`];
   return (
     <>
@@ -131,7 +136,7 @@ const Navbar = (props) => {
                   <Link href="/transfer">
                     <a
                       className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
-                        currentPath === `/transfer` ? `border-blue-700 text-blue-700` : `border-transparent`
+                        transferPaths.includes(currentPath) ? `border-blue-700 text-blue-700` : `border-transparent`
                       } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
                     >
                       Transfer

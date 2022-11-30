@@ -8,14 +8,21 @@ import Image from 'next/image';
 import { useForm, Controller } from 'react-hook-form';
 import ConfirmDetailsModal from './ConfirmDetailsModal';
 import ChooseBeneficiaryModal from './ChooseBeneficiaryModal';
-
+import SaveBeneficiaryModal from './SaveBeneficiaryModal';
 
 const TransferBank = (props) => {
+  const initialInfos = {
+    accountNumber: '',
+    bank: '',
+  };
+
   const [loader, setLoader] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showBeneficiary, setShowBeneficiary] = useState(false);
+  const [beneficiaryInfos, setBeneficiaryInfos] = useState(initialInfos);
   const [openConfirmDetailsModal, setOpenConfirmDetailsModal] = useState('undefined');
   const [openChooseBeneficiaryModal, setOpenChooseBeneficiaryModal] = useState('undefined');
+  const [openSaveBeneficiaryModal, setOpenSaveBeneficiaryModal] = useState('undefined');
 
   const {
     register,
@@ -29,7 +36,11 @@ const TransferBank = (props) => {
     register: registerTransfer,
     handleSubmit: handleTransferSubmit,
     reset: resetTransfer,
-    formState: { errors: errorsTransfer, isSubmitting: isSubmittingTransfer, isSubmitSuccessful: isSubmitSuccessfulTransfer },
+    formState: {
+      errors: errorsTransfer,
+      isSubmitting: isSubmittingTransfer,
+      isSubmitSuccessful: isSubmitSuccessfulTransfer,
+    },
   } = useForm();
 
   useEffect(() => {
@@ -68,12 +79,15 @@ const TransferBank = (props) => {
   const submitHandler = (userData) => {
     // const newData = {...userData, bank: userData.bank.value}
     console.log(userData);
+    setBeneficiaryInfos(() => {
+      return userData;
+    });
     setLoader(true);
   };
 
   const submitTransferHandler = (userData) => {
     console.log(userData);
-    setOpenConfirmDetailsModal('default')
+    setOpenConfirmDetailsModal('default');
   };
   return (
     <>
@@ -112,7 +126,12 @@ const TransferBank = (props) => {
                             </span>
                           )}
                         </div>
-                        <p className="font-medium text-primaryDarkPurple cursor-pointer" onClick={() => setOpenChooseBeneficiaryModal('default')}>Choose Beneficiary</p>
+                        <p
+                          className="font-medium text-primaryDarkPurple cursor-pointer"
+                          onClick={() => setOpenChooseBeneficiaryModal('default')}
+                        >
+                          Choose Beneficiary
+                        </p>
                       </div>
                       <div className="">
                         <div>
@@ -187,7 +206,8 @@ const TransferBank = (props) => {
                           <div className="flex items-center space-x-4">
                             <button
                               type="button"
-                              className="focus:outline-none text-white bg-primaryDarkPurple hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+                              onClick={() => setOpenSaveBeneficiaryModal('default')}
+                              className="focus:outline-none text-white bg-primaryDarkPurple cursor-pointer hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                             >
                               Save Beneficiary
                             </button>
@@ -315,9 +335,19 @@ const TransferBank = (props) => {
         </div>
       </section>
 
-      <ConfirmDetailsModal openConfirmDetailsModal={openConfirmDetailsModal} setOpenConfirmDetailsModal={setOpenConfirmDetailsModal} />
-      <ChooseBeneficiaryModal openChooseBeneficiaryModal={openChooseBeneficiaryModal} setOpenChooseBeneficiaryModal={setOpenChooseBeneficiaryModal} />
-
+      <ConfirmDetailsModal
+        openConfirmDetailsModal={openConfirmDetailsModal}
+        setOpenConfirmDetailsModal={setOpenConfirmDetailsModal}
+      />
+      <ChooseBeneficiaryModal
+        openChooseBeneficiaryModal={openChooseBeneficiaryModal}
+        setOpenChooseBeneficiaryModal={setOpenChooseBeneficiaryModal}
+      />
+      <SaveBeneficiaryModal
+        openSaveBeneficiaryModal={openSaveBeneficiaryModal}
+        setOpenSaveBeneficiaryModal={setOpenSaveBeneficiaryModal}
+        beneficiaryInfos={beneficiaryInfos}
+      />
     </>
   );
 };
