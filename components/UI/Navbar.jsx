@@ -8,19 +8,7 @@ import Logo from '../../public/assets/svgs/Spring-Logo.svg';
 
 const Navbar = (props) => {
   const currentPath = props.router.pathname;
-  const allInvestPath = [
-    `/investment`,
-    `/investment/create/package`,
-    `/investment/create/transactionpin`,
-    `/investment/create/success`,
-  ];
-  const transferPaths = [
-    `/transfer`,
-    `/transfer/transactionpin`,
-    `/transfer/success`,
-    `/transfer/failed`,
-  ];
-  const transactionPaths = [`/transactions`, `/transactions/transactionsdetails`];
+
   return (
     <>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -126,7 +114,7 @@ const Navbar = (props) => {
                   <Link href="/investment">
                     <a
                       className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
-                        allInvestPath.includes(currentPath) ? `border-blue-700 text-blue-700` : `border-transparent`
+                        currentPath.includes('investment') ? `border-blue-700 text-blue-700` : `border-transparent`
                       } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
                     >
                       Invest
@@ -137,10 +125,21 @@ const Navbar = (props) => {
                   <Link href="/transfer">
                     <a
                       className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
-                        transferPaths.includes(currentPath) ? `border-blue-700 text-blue-700` : `border-transparent`
+                        currentPath.includes('transfer') ? `border-blue-700 text-blue-700` : `border-transparent`
                       } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
                     >
                       Transfer
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/fund">
+                    <a
+                      className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
+                        currentPath.includes('fund') ? `border-blue-700 text-blue-700` : `border-transparent`
+                      } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
+                    >
+                      Fund Account
                     </a>
                   </Link>
                 </li>
@@ -159,7 +158,7 @@ const Navbar = (props) => {
                   <Link href="/transactions">
                     <a
                       className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
-                        transactionPaths.includes(currentPath) ? `border-blue-700 text-blue-700` : `border-transparent`
+                        currentPath.includes('transactions') ? `border-blue-700 text-blue-700` : `border-transparent`
                       } hover:border-gray-300 hover:text-blue-700 bg-blue-700  md:bg-transparent dark:text-white`}
                     >
                       Transactions
