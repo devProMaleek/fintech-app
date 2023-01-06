@@ -85,6 +85,8 @@ const TransactionPinForm = (props) => {
   );
 };
 
-TransactionPinForm.propTypes = {};
+TransactionPinForm.propTypes = {
+  urlToRoute: PropTypes.string,
+};
 
 export default TransactionPinForm;
