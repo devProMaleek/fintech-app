@@ -23,6 +23,7 @@ module.exports = {
       primaryRed: '#CF4A6A',
       primaryTextPlaceholder: '#9B9B9B',
       primaryGrayText: '#8F8F8F',
+      primaryGrayIcon: '#676767',
       primaryDarkGreen: '#058C1A',
       primaryLightGreen: '#DFFFD6',
       primaryLightGrey: '#E9EBED',
