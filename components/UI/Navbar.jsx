@@ -144,7 +144,7 @@ const Navbar = (props) => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/">
+                  <Link href="/bills">
                     <a
                       className={`block py-2 px-2 text-primaryTextColor font-nunito font-bold border-b-2 ${
                         currentPath === `/bills` ? `border-blue-700 text-blue-700` : `border-transparent`

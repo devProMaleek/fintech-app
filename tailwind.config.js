@@ -26,10 +26,12 @@ module.exports = {
       primaryGrayIcon: '#676767',
       primaryDarkGreen: '#058C1A',
       primaryLightGreen: '#DFFFD6',
+      primaryLightPurple: '#F6E4FF',
       primaryLightGrey: '#E9EBED',
       primaryDarkPurple: '#7610B5',
       primaryTextColor: '#0A2440',
       primaryLightYellow: '#FFECD3',
+      primaryLightRed: '#FFE4EA',
       primaryHighlightYellow: '#FDC37A',
       gray: {
         100: '#f7fafc',
