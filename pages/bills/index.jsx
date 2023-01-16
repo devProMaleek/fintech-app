@@ -5,7 +5,7 @@ import Script from 'next/script';
 import { useRouter } from 'next/router';
 
 import Navbar from '../../components/UI/Navbar';
-import Bills from '../../components/Bills/bills';
+import Bills from '../../components/Bills/Bills';
 
 const BillsPage = (props) => {
   const router = useRouter();

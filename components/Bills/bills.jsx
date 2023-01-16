@@ -5,8 +5,13 @@ import Internet from '../../public/assets/svgs/internet.svg';
 import Cable from '../../public/assets/svgs/cable.svg';
 import Utility from '../../public/assets/svgs/utility.svg';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 
 const Bills = (props) => {
+  const router = useRouter();
+  const navigate = (page) => {
+    router.push(`/bills/${page}`);
+  }
   return (
     <>
       <section className="bg-primaryPurple pt-6 dark:bg-gray-900">
@@ -18,7 +23,7 @@ const Bills = (props) => {
           <div className="bg-white rounded-t-xl">
             <div className="py-4 px-4 mx-auto rounded-lg max-w-screen-xl sm:py-16 lg:px-6">
               <div className="grid grid-cols-4 gap-8">
-                <div className="p-4 mt-4 w-72 border border-primaryLightGrey rounded-lg">
+                <div className="p-4 mt-4 w-72 cursor-pointer border border-primaryLightGrey rounded-lg" onClick={() => navigate('airtime-data')}>
                   <div className="flex items-center justify-between">
                     <div className="bg-primaryPurple p-3 rounded-md flex items-center justify-center">
                       <Image src={Mobile} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
@@ -29,7 +34,7 @@ const Bills = (props) => {
                     </svg>
                   </div>
                 </div>
-                <div className="p-4 mt-4 w-72 border border-primaryLightGrey rounded-lg">
+                <div className="p-4 mt-4 w-72 cursor-pointer border border-primaryLightGrey rounded-lg" onClick={() => navigate('cable')}>
                   <div className="flex items-center justify-between">
                     <div className="bg-primaryLightGreen p-3 rounded-md flex items-center justify-center">
                       <Image src={Cable} className="mr-3 h-9" alt="Cable Logo" />
@@ -40,7 +45,7 @@ const Bills = (props) => {
                     </svg>
                   </div>
                 </div>
-                <div className="p-4 mt-4 w-72 border border-primaryLightGrey rounded-lg">
+                <div className="p-4 mt-4 w-72 cursor-pointer border border-primaryLightGrey rounded-lg" onClick={() => navigate('internet')}>
                   <div className="flex items-center justify-between">
                     <div className="bg-primaryLightPurple p-3 rounded-md flex items-center justify-center">
                       <Image src={Internet} className="mr-3 h-6 sm:h-9" alt="Internet Logo" />
@@ -51,7 +56,7 @@ const Bills = (props) => {
                     </svg>
                   </div>
                 </div>
-                <div className="p-4 mt-4 w-72 border border-primaryLightGrey rounded-lg">
+                <div className="p-4 mt-4 w-72 cursor-pointer border border-primaryLightGrey rounded-lg" onClick={() => navigate('utility')}>
                   <div className="flex items-center justify-between">
                     <div className="bg-primaryLightRed p-3 rounded-md flex items-center justify-center">
                       <Image src={Utility} className="mr-3 h-6 sm:h-9" alt="Utility Logo" />
