@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import ConfirmDetailsModal from './ConfirmDetailsModal';
 
 const Airtime = (props) => {
   const router = useRouter();
   const [isDataSelected, setIsDataSelected] = useState(false);
+  const [openConfirmDetailsModal, setOpenConfirmDetailsModal] = useState('undefined');
 
   const {
     register,
@@ -22,10 +24,12 @@ const Airtime = (props) => {
 
   const submitHandler = (userData) => {
     console.log(userData);
+    setOpenConfirmDetailsModal('default');
   };
   console.log(isDataSelected);
 
   return (
+    <>
     <section className="bg-white py-6 dark:bg-gray-900">
       <div className="py-4 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
         <div className="flex items-center space-x-5">
@@ -230,7 +234,15 @@ const Airtime = (props) => {
         </div>
       </div>
     </section>
+
+    <ConfirmDetailsModal
+      openConfirmDetailsModal={openConfirmDetailsModal}
+      setOpenConfirmDetailsModal={setOpenConfirmDetailsModal}
+    />;
+    
+    </>
   );
+
 };
 
 Airtime.propTypes = {};
