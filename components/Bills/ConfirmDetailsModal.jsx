@@ -34,7 +34,7 @@ const ConfirmDetailsModal = (props) => {
             </div>
           </Modal.Body>
           <div className="text-center">
-            <Link href="/bills/transactionpin">
+            <Link href="/bills/airtime-data/transactionpin">
               <a className="">
                 <button
                   type="button"
