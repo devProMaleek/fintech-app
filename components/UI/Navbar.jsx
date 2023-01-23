@@ -62,9 +62,9 @@ const Navbar = (props) => {
                       <span className="block text-sm">Micheal Akintoye</span>
                       <span className="block truncate text-sm font-medium">name@spring.com</span>
                     </Dropdown.Header>
-                    <Dropdown.Item>Dashboard</Dropdown.Item>
-                    <Dropdown.Item>Settings</Dropdown.Item>
-                    <Dropdown.Item>Earnings</Dropdown.Item>
+                    <Link href='/dashboard'><Dropdown.Item>Dashboard</Dropdown.Item></Link>
+                    <Link href='/profile'><Dropdown.Item>Profile</Dropdown.Item></Link>
+                    <Link href='#'><Dropdown.Item>Settings</Dropdown.Item></Link>
                     <Dropdown.Divider />
                     <Dropdown.Item>Sign out</Dropdown.Item>
                   </Dropdown>

@@ -117,7 +117,7 @@ const SignUp = (props) => {
                       Email Address
                     </label>
                     <input
-                      // type="email"
+                      type="email"
                       id="emailAddress"
                       name="emailAddress"
                       className={
@@ -180,7 +180,9 @@ const SignUp = (props) => {
                         })}
                       />
                       {errors.phoneNumber && (
-                        <span className="mt-2 ml-4 text-sm text-red-600 dark:text-red-500">{errors.phoneNumber.message || `Field is required`}</span>
+                        <span className="mt-2 ml-4 text-sm text-red-600 dark:text-red-500">
+                          {errors.phoneNumber.message || `Field is required`}
+                        </span>
                       )}
                     </div>
                   </div>
