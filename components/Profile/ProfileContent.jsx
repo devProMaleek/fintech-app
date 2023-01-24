@@ -5,13 +5,19 @@ import 'react-circular-progressbar/dist/styles.css';
 
 import ChangingProgressProvider from './ChangingProgressProvider';
 import Edit from '../../public/assets/svgs/edit.svg';
+import Cancel from '../../public/assets/svgs/cancel.svg';
+import BusinessWoman from '../../public/assets/svgs/business-women.svg';
+import FemaleStudent from '../../public/assets/svgs/female-student.svg';
+import Groom from '../../public/assets/svgs/groom.svg';
+import Woman from '../../public/assets/svgs/woman.svg';
+import MaleStudent from '../../public/assets/svgs/male-student.svg';
+import ProfileAvatar from '../../public/assets/svgs/profile-avatar.svg';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 
 const ProfileContent = (props) => {
-  const percentage = 66;
-
-  const [openModal, setOpenModal] = useState('undefined');
+  const [editMode, setEditMode] = useState(false);
 
   const {
     register,
@@ -19,6 +25,11 @@ const ProfileContent = (props) => {
     reset,
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm();
+
+  const isValidEmail = (email) =>
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      email
+    );
 
   useEffect(() => {
     if (isSubmitSuccessful && !isSubmitting) {
@@ -28,51 +39,92 @@ const ProfileContent = (props) => {
 
   const submitHandler = (userData) => {
     console.log(userData);
-    setOpenModal('default');
+    setEditMode(!editMode);
   };
   return (
     <>
       <div className="bg-primaryBlue w-full px-6 py-4">
-        <div className="flex items-stretch space-x-5 text-white ">
-          <div style={{ width: 165, height: 165 }}>
-            <ChangingProgressProvider values={[0, 15]}>
-              {(percentage) => (
-                <CircularProgressbarWithChildren
-                  styles={buildStyles({
-                    textColor: 'red',
-                    pathColor: 'gold',
-                    trailColor: 'transparent',
-                  })}
-                  strokeWidth={1.75}
-                  value={percentage}
-                  text={`${percentage}%`}
-                >
-                  <div className="bg-white p-1.5 rounded-full ring-2 ring-white outline-white dark:ring-gray-500">
-                    <div class="relative inline-flex items-center justify-center w-36 h-36 overflow-hidden bg-primaryLightGrey rounded-full dark:bg-gray-600">
-                      <span class="bg-primaryLightGrey text-3xl font-medium text-primaryTextColor dark:text-gray-300">
-                        MA
-                      </span>
+        <div className="flex items-center ">
+          <div className="flex items-stretch space-x-5 text-white ">
+            <div style={{ width: 165, height: 165 }}>
+              <ChangingProgressProvider values={[0, 15]}>
+                {(percentage) => (
+                  <CircularProgressbarWithChildren
+                    styles={buildStyles({
+                      textColor: 'red',
+                      pathColor: 'gold',
+                      trailColor: 'transparent',
+                    })}
+                    strokeWidth={1.75}
+                    value={percentage}
+                    text={`${percentage}%`}
+                  >
+                    <div className="bg-white p-1.5 rounded-full ring-2 ring-white outline-white dark:ring-gray-500">
+                      <div className="relative inline-flex items-center justify-center w-36 h-36 overflow-hidden bg-primaryLightGrey rounded-full dark:bg-gray-600">
+                        <span className="bg-primaryLightGrey text-3xl font-medium text-primaryTextColor dark:text-gray-300">
+                          MA
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </CircularProgressbarWithChildren>
-              )}
-            </ChangingProgressProvider>
-          </div>
-          <div className="self-center">
-            <div className="space-y-5">
-              <h2 className="text-2xl font-normal ">Micheal Akintola</h2>
-              <div className="w-16 break-normal text-sm">35% Complete</div>
+                  </CircularProgressbarWithChildren>
+                )}
+              </ChangingProgressProvider>
             </div>
+            <div className="self-center">
+              <div className="space-y-5">
+                <h2 className="text-2xl font-normal ">Micheal Akintola</h2>
+                <div className="w-16 break-normal text-sm">35% Complete</div>
+              </div>
+            </div>
+            {!editMode && (
+              <div
+                className="bg-white mt-7 self-start flex items-center justify-center w-10 h-10 rounded-full cursor-pointer"
+                onClick={() => setEditMode(!editMode)}
+              >
+                <Image src={Edit} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
+              </div>
+            )}
           </div>
-          <div className="bg-white mt-7 self-start flex items-center justify-center w-10 h-10 rounded-full">
-            <Image src={Edit} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
-          </div>
+          {editMode && (
+            <>
+              <div className="h-36 bg-white" style={{ width: '1px', marginLeft: '120px' }}></div>
+              <div className="" style={{ marginLeft: '50px' }}>
+                <h4 className="text-white pb-2 px-2 text-sm">Select Avatar</h4>
+                <div className="grid grid-cols-4 gap-4">
+                  <div
+                    className="bg-white flex items-center justify-center h-14 w-14 rounded-full cursor-pointer"
+                    onClick={() => setEditMode(!editMode)}
+                  >
+                    <Image src={Cancel} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
+                  </div>
+                  <div className="bg-white flex items-center justify-center h-14 w-14 rounded-full">
+                    <Image src={Groom} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
+                  </div>
+                  <div className="bg-white flex items-center justify-center h-14 w-14 rounded-full">
+                    <Image src={FemaleStudent} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
+                  </div>
+                  <div className="bg-white flex items-center justify-center h-14 w-14 rounded-full">
+                    <Image src={MaleStudent} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
+                  </div>
+                  <div className="bg-white flex items-center justify-center h-14 w-14 rounded-full">
+                    <Image src={ProfileAvatar} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
+                  </div>
+                  <div className="bg-white flex items-center justify-center h-14 w-14 rounded-full">
+                    <Image src={BusinessWoman} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
+                  </div>
+                  <div className="bg-white flex items-center justify-center h-14 w-14 rounded-full">
+                    <Image src={Woman} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
       <div className="mt-10 mb-6 ml-6">
         <form className="max-w-md" onSubmit={handleSubmit(submitHandler)}>
-          <div className="border p-8 rounded-lg">
+          <div className="border mb-8 p-8 rounded-lg">
             <h2 className="pb-6 font-medium font-nunito text-primaryTextColor text-lg">Personal Details</h2>
             <div className="mb-2">
               <div className="mb-3">
@@ -134,11 +186,14 @@ const ProfileContent = (props) => {
               <div className="h-0.5 my-8 w-full bg-gray-200"></div>
               <h2 className="pb-6 font-medium font-nunito text-primaryTextColor text-lg">Next of Kin Details</h2>
               <div className="mb-6">
-                <label htmlFor="fullName" className="block mb-2 text-sm font-normal text-primaryGrayText dark:text-gray-300">
+                <label
+                  htmlFor="fullName"
+                  className="block mb-2 text-sm font-normal text-primaryGrayText dark:text-gray-300"
+                >
                   Full Name
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   id="fullName"
                   name="fullName"
                   className={
@@ -149,7 +204,6 @@ const ProfileContent = (props) => {
                   placeholder="e.g. John Doe"
                   {...register('fullName', {
                     required: true,
-                    validate: (value) => isValidEmail(value) || 'Provide a valid email',
                   })}
                 />
                 {errors.fullName && (
@@ -261,6 +315,22 @@ const ProfileContent = (props) => {
               </div>
             </div>
           </div>
+          {editMode && (
+            <div className="text-center">
+              <button
+                type="submit"
+                className="mb-8 max-w-xs text-white bg-primaryBlue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-4 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Update Profile
+              </button>
+              <p
+                className="text-primaryBlue font-nunito font-semibold text-base cursor-pointer"
+                onClick={() => setEditMode(!editMode)}
+              >
+                Cancel
+              </p>
+            </div>
+          )}
         </form>
       </div>
     </>
