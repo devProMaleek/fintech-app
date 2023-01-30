@@ -1,4 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setProfileTab, setCardLinkingTab, setSecurityTab, setUpgradeAccountTab } from '../../redux/slices/UI/profileTabSlice';
+
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import User from '../../public/assets/svgs/user.svg';
@@ -11,58 +14,9 @@ import Security from './Security';
 import UpgradeAccount from './UpgradeAccount';
 
 const Profile = (props) => {
-  const initialState = {
-    profileContent: true,
-    cardLinking: false,
-    security: false,
-    upgradeAccount: false,
-  };
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.profileTab);
 
-  const profileReducer = (state, action) => {
-    switch (action.type) {
-      case 'PROFILE': {
-        return {
-          ...state,
-          profileContent: true,
-          cardLinking: false,
-          security: false,
-          upgradeAccount: false,
-        };
-      }
-      case 'CARD_LINKING': {
-        return {
-          ...state,
-          cardLinking: true,
-          profileContent: false,
-          security: false,
-          upgradeAccount: false,
-        };
-      }
-      case 'SECURITY': {
-        return {
-          ...state,
-          security: true,
-          profileContent: false,
-          cardLinking: false,
-          upgradeAccount: false,
-        };
-      }
-      case 'UPGRADE_ACCOUNT': {
-        return {
-          ...state,
-          upgradeAccount: true,
-          profileContent: false,
-          cardLinking: false,
-          security: false,
-        };
-      }
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatch] = useReducer(profileReducer, initialState);
-  
 
   return (
     <>
@@ -77,8 +31,10 @@ const Profile = (props) => {
                 <div className="w-full text-gray-900 bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                   <button
                     type="button"
-                    onClick={() => dispatch({ type: 'PROFILE' })}
-                    className={`${state.profileContent && `bg-primaryYellow`} relative inline-flex items-center w-full p-3 my-2 text-sm font-medium rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10  dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white`}
+                    onClick={() => dispatch(setProfileTab())}
+                    className={`${
+                      state.profileTab && `bg-primaryYellow`
+                    } relative inline-flex items-center w-full p-3 my-2 text-sm font-medium rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10  dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white`}
                   >
                     <div className="flex justify-center items-center bg-primaryPurple w-10 h-10 rounded-full">
                       <Image src={User} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
@@ -87,8 +43,10 @@ const Profile = (props) => {
                   </button>
                   <button
                     type="button"
-                    onClick={() => dispatch({ type: 'CARD_LINKING' })}
-                    className={`${state.cardLinking && `bg-primaryYellow`} relative inline-flex items-center w-full p-3 mb-2 text-sm font-medium rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10  dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white`}
+                    onClick={() => dispatch(setCardLinkingTab())}
+                    className={`${
+                      state.cardLinkingTab && `bg-primaryYellow`
+                    } relative inline-flex items-center w-full p-3 mb-2 text-sm font-medium rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10  dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white`}
                   >
                     <div className="flex justify-center items-center bg-primaryLightGreen w-10 h-10 rounded-full">
                       <Image src={Card} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
@@ -97,8 +55,10 @@ const Profile = (props) => {
                   </button>
                   <button
                     type="button"
-                    onClick={() => dispatch({ type: 'SECURITY' })}
-                    className={`${state.security && `bg-primaryYellow`} relative inline-flex items-center w-full p-3 mb-2 text-sm font-medium rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10  dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white`}
+                    onClick={() => dispatch(setSecurityTab())}
+                    className={`${
+                      state.securityTab && `bg-primaryYellow`
+                    } relative inline-flex items-center w-full p-3 mb-2 text-sm font-medium rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10  dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white`}
                   >
                     <div className="flex justify-center items-center bg-primaryLightPurple w-10 h-10 rounded-full">
                       <Image src={Setting} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
@@ -107,8 +67,10 @@ const Profile = (props) => {
                   </button>
                   <button
                     type="button"
-                    onClick={() => dispatch({ type: 'UPGRADE_ACCOUNT' })}
-                    className={`${state.upgradeAccount && `bg-primaryYellow`} relative inline-flex items-center w-full p-3 text-sm font-medium rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10  dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white`}
+                    onClick={() => dispatch(setUpgradeAccountTab())}
+                    className={`${
+                      state.upgradeAccountTab && `bg-primaryYellow`
+                    } relative inline-flex items-center w-full p-3 text-sm font-medium rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10  dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white`}
                   >
                     <div className="flex justify-center items-center bg-primaryPurple w-10 h-10 rounded-full">
                       <Image src={Shield} className="mr-3 h-6 sm:h-9" alt="Mobile Logo" />
@@ -118,10 +80,10 @@ const Profile = (props) => {
                 </div>
               </div>
               <div className="col-span-2">
-                {state.profileContent && <ProfileContent />}
-                {state.cardLinking && <CardLinking />}
-                {state.security && <Security />}
-                {state.upgradeAccount && <UpgradeAccount />}
+                {state.profileTab && <ProfileContent />}
+                {state.cardLinkingTab && <CardLinking />}
+                {state.securityTab && <Security />}
+                {state.upgradeAccountTab && <UpgradeAccount />}
               </div>
             </div>
           </div>
