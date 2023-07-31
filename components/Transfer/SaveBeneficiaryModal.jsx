@@ -19,7 +19,7 @@ const SaveBeneficiaryModal = (props) => {
     if (isSubmitSuccessful && !isSubmitting) {
       reset();
     }
-  }, [isSubmitting, isSubmitSuccessful]);
+  }, [isSubmitting, isSubmitSuccessful, reset]);
 
   const submitHandler = (userData) => {
     const beneficiaryInfos = {
