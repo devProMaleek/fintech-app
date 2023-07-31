@@ -35,7 +35,7 @@ const ProfileContent = (props) => {
     if (isSubmitSuccessful && !isSubmitting) {
       reset();
     }
-  }, [isSubmitting, isSubmitSuccessful]);
+  }, [isSubmitting, isSubmitSuccessful, reset]);
 
   const submitHandler = (userData) => {
     console.log(userData);
