@@ -47,13 +47,13 @@ const TransferSpring = (props) => {
       reset();
       setShowBeneficiary(true);
     }
-  }, [isSubmitting, isSubmitSuccessful]);
+  }, [isSubmitting, isSubmitSuccessful, reset]);
 
   useEffect(() => {
     if (isSubmitSuccessfulTransfer && !isSubmittingTransfer) {
       resetTransfer();
     }
-  }, [isSubmittingTransfer, isSubmitSuccessfulTransfer]);
+  }, [isSubmittingTransfer, isSubmitSuccessfulTransfer, resetTransfer]);
 
   useEffect(() => {
     if (isSubmitting) {
@@ -160,7 +160,7 @@ const TransferSpring = (props) => {
                             }}
                             transition={{ duration: 2, ease: [0.5, 0.71, 1, 1.5] }}
                           >
-                            <Image src={Loader} />
+                            <Image src={Loader} alt='Loader' />
                           </motion.div>
                         ) : (
                           <button
